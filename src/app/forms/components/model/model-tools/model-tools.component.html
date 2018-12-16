@@ -1,0 +1,6 @@
+<div class="toolbox">
+  <div class="category" *ngFor="let cat of config">
+      <h3>{{ cat.Name }}</h3>
+      <mpu-model-tool *ngFor="let tool of cat.Items" [type]="tool" [icon]="cfg[tool].Icon" [name]="cfg[tool].Name" class="tool-item"></mpu-model-tool>
+  </div>
+</div>

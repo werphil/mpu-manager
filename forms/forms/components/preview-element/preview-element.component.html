@@ -1,0 +1,193 @@
+
+<!-- Anzeigebedingungen -->
+<div class="mainbody" *ngIf="!element.hide && (!element.conditions || element.conditions.length === 0 || (element.conditions && showElement()))">
+
+<!-- Grids -->
+<div class="group" *ngIf="element.typ === ControlType.Group">
+
+    <h3 class="group-header">{{ element.label }} 
+        <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+            <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+            <div class="info-bubble">{{ element.info }}</div>
+        </div>
+    </h3>
+
+    <app-preview-element *ngFor="let row of element.rows" [element]="row" [form]="getFormgroup()"></app-preview-element>
+</div>
+
+<div class="group" *ngIf="element.typ === ControlType.BoundGroup">
+
+    <div class="row">
+        <div class="col-6">
+            <app-preview-element *ngIf="element.rows[0]" [element]="element.rows[0]" [form]="getFormgroup()"></app-preview-element>
+        </div>
+        <div class="col-6">
+            <app-preview-element *ngIf="element.rows[1]" [element]="element.rows[1]" [form]="getFormgroup()"></app-preview-element>
+        </div>
+    </div>
+
+</div>
+
+<!-- Richtext -->
+<div *ngIf="element.typ === ControlType.Richtext" class="richtext">
+    {{ element.label }}
+</div>
+
+<!-- Controls -->
+<ng-container *ngIf="!element.rows" >
+
+    
+<div [formGroup]="form" [ngSwitch]="element.typ">
+    
+    <!-- InputText -->
+    <ng-container *ngSwitchCase="ControlType.InputText">
+        <div class="label">
+            <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+            <label for="e-{{ element.id }}">{{ element.label }}<span *ngIf="element.istPflicht">*</span></label>
+        </div>
+        <div class="control">
+            <input type="text" size="{{ element.width }}" formControlName="e{{ element.id }}" id="e-{{ element.id }}" [required]="element.istPflicht" />
+            <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                <div class="info-bubble">{{ element.info }}</div>
+            </div>
+            <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                <span *ngIf="form.get('e'+ element.id).errors.required">Wert erforderlich</span>
+                <span *ngIf="!form.get('e'+ element.id).errors.required && form.get('e'+ element.id).errors.mpuValidator">{{ element.error || 'Ungültige Eingabe' }}</span>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Output -->
+    <ng-container *ngSwitchCase="ControlType.Output">
+        <div class="label">
+            <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+            <label for="e-{{ element.id }}">{{ element.label }}<span *ngIf="element.istPflicht">*</span></label>
+        </div>
+        <div class="control">
+            <input type="text" readonly size="{{ element.width }}" [value]="getValue()" formControlName="e{{ element.id }}" id="e-{{ element.id }}" [required]="element.istPflicht" />
+            <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                <div class="info-bubble">{{ element.info }}</div>
+            </div>
+            <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                <span *ngIf="form.get('e'+ element.id).errors.required">Wert erforderlich</span>
+                <span *ngIf="!form.get('e'+ element.id).errors.required && form.get('e'+ element.id).errors.mpuValidator">{{ element.error || 'Ungültige Eingabe' }}</span>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- RadioButtons -->
+    <ng-container *ngSwitchCase="ControlType.Radiobutton">
+        <div class="label">
+            <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+            {{ element.label }}<span *ngIf="element.istPflicht">*</span>
+        </div>    
+        <div class="control" >
+            <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                <div class="info-bubble">{{ element.info }}</div>
+            </div>
+            <div class="element-values" *ngIf="element.werte">
+                <div *ngFor="let val of element.werte">
+                    <label><input type="radio" [value]="val" formControlName="e{{ element.id }}" /> {{ val }}</label>
+                </div>
+            </div>
+            <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                <span *ngIf="form.get('e'+ element.id).errors.required">Auswahl erforderlich</span>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Checkbox -->
+    <ng-container *ngSwitchCase="ControlType.Checkbox">
+            <div class="label">
+                <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+                {{ element.label }}<span *ngIf="element.istPflicht">*</span>
+            </div>    
+            <div class="control" >
+                <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                    <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                    <div class="info-bubble">{{ element.info }}</div>
+                </div>
+                <div class="element-values" *ngIf="element.werte">
+                    <div *ngFor="let val of element.werte">
+                        <label><input type="checkbox" [value]="val" formControlName="e{{ element.id }}" /> {{ val }}</label>
+                    </div>
+                </div>
+                <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                    <span *ngIf="form.get('e'+ element.id).errors.required">Auswahl erforderlich</span>
+                </div>
+            </div>
+        </ng-container>
+
+    <!-- DropDowns -->
+    <ng-container *ngSwitchCase="ControlType.Dropdown">
+        <div class="label">
+            <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+            <label for="e-{{ element.id }}">{{ element.label }}<span *ngIf="element.istPflicht">*</span></label>
+        </div>
+        <div class="control">
+            <select formControlName="e{{ element.id }}" id="e-{{ element.id }}" [required]="element.istPflicht">
+                <option value="" selected></option>
+                <ng-container *ngIf="element.werte && element.werte.length > 0">
+                    <option *ngFor="let val of element.werte" [value]="val">{{ val }}</option>
+                </ng-container>
+            </select>
+            <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                <div class="info-bubble">{{ element.info }}</div>
+            </div>
+            <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                <span *ngIf="form.get('e'+ element.id).errors.required">Auswahl erforderlich</span>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- DatePicker -->
+    <ng-container *ngSwitchCase="ControlType.Datepicker">
+        <div class="label">
+            <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+            <label for="e-{{ element.id }}">{{ element.label }}<span *ngIf="element.istPflicht">*</span></label>
+        </div>
+        <div class="control">
+            <!-- TODO: ngstyle für element.width -->
+            <input type="date" [ngStyle]="{ 'width': (element.width * 7) + 'px' }" formControlName="e{{ element.id }}" id="e-{{ element.id }}" [required]="element.istPflicht" />
+            <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                <div class="info-bubble">{{ element.info }}</div>
+            </div>
+            <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                <span *ngIf="form.get('e'+ element.id).errors.required">Wert erforderlich</span>
+                <span *ngIf="!form.get('e'+ element.id).errors.required && form.get('e'+ element.id).errors.mpuValidator">{{ element.error || 'Ungültige Eingabe' }}</span>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- DatePicker -->
+    <ng-container *ngSwitchCase="ControlType.Upload">
+        <div class="label">
+            <span *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-img"><img src="assets/mpustyle/form/invalid_value.png" alt="!" /></span>
+            <label for="e-{{ element.id }}">{{ element.label }}<span *ngIf="element.istPflicht">*</span></label>
+        </div>
+        <div class="control">
+            <!-- TODO: ngstyle für element.width -->
+            <input type="file" accept="application/pdf" formControlName="e{{ element.id }}" id="e-{{ element.id }}" [required]="element.istPflicht" />
+            <div *ngIf="element.info" title="Hilfetext zu Feld '{{ element.label }}'" (click)="infoActive = true" (mouseleave)="infoActive = false" [ngClass]="{'info': true, 'info-active': infoActive }">
+                <img src="assets/mpustyle/form/icon_info.png" alt="i" />
+                <div class="info-bubble">{{ element.info }}</div>
+            </div>
+            <div *ngIf="form.get('e'+ element.id).invalid && form.get('e'+ element.id).dirty" class="invalid-text">
+                <span *ngIf="form.get('e'+ element.id).errors.required">Wert erforderlich</span>
+            </div>
+        </div>
+    </ng-container>
+
+
+<!-- /Controls -->       
+</div>
+
+
+</ng-container>
+
+</div>

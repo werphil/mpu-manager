@@ -1,0 +1,48 @@
+<ng-template #dlgNewPage let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Neue Formularseite einf&uuml;gen</h4>
+	</div>
+	<div class="modal-body">
+		<p>Wie soll die Seite hei&szlig;en?</p>
+		<input class="form-control" [(ngModel)]="neueSeiteName" />
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="cok">Abbrechen</button>
+		<button type="button" class="btn btn-success" (click)="newFormPage(); cok">Weiter</button>
+	</div>
+</ng-template>
+
+<ng-template #dlgForm let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Formulareigenschaften</h4>
+	</div>
+	<div class="modal-body">
+		<p>Name der IVP</p>
+		<input class="form-control" [(ngModel)]="form.name" />
+		<hr />
+		<p>Umschlagtext</p>
+		<textarea rows="6" class="form-control" [(ngModel)]="form.umschlag"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Fertig</button>
+	</div>
+</ng-template>
+
+<div class="alert alert-danger" *ngIf="form === null">Das Formular konnte nicht geladen werden.</div>
+<div class="model-container" *ngIf="form !== null">
+		
+	<button type="button" class="btn btn-outline-dark float-right" (click)="openDialog(dlgForm)"><i class="fas fa-cog"></i> Formulareigenschaften</button>
+	<h2>{{ form.name }}</h2>
+	<ngb-tabset (tabChange)="beforeChange($event, dlgNewPage)" [activeId]="selTab" #tabs="ngbTabset">
+		<ngb-tab *ngFor="let page of form.pages; index as i" id="seite-{{ i }}">
+			<ng-template ngbTabTitle><i class="fas fa-columns"></i><strong> {{ page.name }}</strong></ng-template>
+			<ng-template ngbTabContent>
+				<app-page [page]="page"></app-page>
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab id="tab-new">
+			<ng-template ngbTabTitle><strong><i class="fas fa-plus-square"></i></strong></ng-template>
+			<ng-template ngbTabContent></ng-template>
+		</ngb-tab>
+	</ngb-tabset>
+</div>

@@ -1,0 +1,41 @@
+body {
+	background: white;
+}
+.arrowClass {
+	color: #3333CC;
+}
+#navigation {
+	background-color: white;
+}
+#navigation .xfControl:not(.activePageLink) .xfValue {
+	background-color: transparent;
+	color: #3333CC;
+}
+#navigation .activePageLink .xfValue {
+	background: #3333CC;	
+	color: #FFFFFF;
+}
+#formBorder {
+	border-color: #3333CC;
+}
+#resizeableForm {
+	background: #ECF5FA;
+}
+.groupTitle {
+	background-color: #D6E5F8;
+	color: #000000;
+}
+.xfInput .widgetContainer .xfValue[type="checkbox"] {
+	background-color: #ECF5FA;
+}
+.compactRepeatTitle, 
+.fullExpandableRepeatTitle {
+	background-color: #D6E5F8;
+	color: #000000;
+}
+.fullExpandableRepeatHeader {
+	background-color: #E6F3FB;
+}
+.fullExpandableRepeatBody {
+	background-color: #F5FAFC;
+}

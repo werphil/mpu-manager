@@ -1,0 +1,48 @@
+<mpu-topnav [showMenu]="false" formName="" loginName="Max Mustermann"></mpu-topnav>
+
+<mpu-sharepoint-connection *ngIf="isSharePointError"></mpu-sharepoint-connection>
+
+
+<!-- DIALOGE -->
+
+<!-- Neues Projekt -->
+<p-dialog header="Neues Projekt" [(visible)]="new.project.show">
+	<p>Wie soll das Projekt heißen?</p>
+	<input type="text" pInputText #newProjectName />
+	<p-footer>
+		<button type="button" pButton icon="pi pi-check" (click)="addProject(newProjectName.value); new.project.show = false;" label="Speichern"></button>
+		<button type="button" pButton icon="pi pi-close" (click)="new.project.show = false" label="Abbrechen" class="ui-button-secondary"></button>
+	</p-footer>
+</p-dialog>
+
+<!-- Neues Formular -->
+<p-dialog header="Neues Formular" [(visible)]="new.form.show">
+		<p>{{ new.form.projectName }}</p>
+		<p>Wie soll das Formular heißen (Arbeitstitel)?</p>
+		<input type="text" pInputText #newFormName />
+		<p-footer>
+			<button type="button" pButton icon="pi pi-check" (click)="addForm(newFormName.value); new.form.show = false; " label="Speichern"></button>
+			<button type="button" pButton icon="pi pi-close" (click)="new.form.show = false" label="Abbrechen" class="ui-button-secondary"></button>
+		</p-footer>
+	</p-dialog>
+
+
+<!-- BODY -->
+<div class="container-fluid">
+	
+	<div class="d-flex" *ngIf="loading$ | async">
+		<p-progressSpinner></p-progressSpinner>
+		<p class="p-5"><strong>Projekte werden geladen.</strong></p>
+	</div>
+
+	<mpu-project-list [projects]="projects$ | async" (addProject)="new.project.show = true" (addForm)="selectProject($event)"></mpu-project-list>
+	
+	
+	
+	<footer class="footer">
+		<div class="version-note">Prototyp 0.7</div>
+		<img src="assets/BMDW_Logo.jpg" alt="logo" />
+	</footer>
+</div>
+
+

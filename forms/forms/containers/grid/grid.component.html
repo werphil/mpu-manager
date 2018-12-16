@@ -1,0 +1,57 @@
+<!-- ANZEIGEBEDINGUNGEN -->
+<ng-template #dlgCondition let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Anzeigebedingung hinzufügen</h4>
+	</div>
+	<div class="modal-body">
+		todo
+		
+		<button type="button" class="btn btn-outline-dark" (click)="cok"><i class="fas fa-times-circle"></i> Abbrechen</button>
+	</div>
+</ng-template>
+
+<!-- Normale FormGroup -->
+<div *ngIf="!parent['typ'] || parent['typ'] !== 'BoundGroup'">
+  <ng-container *ngFor="let element of elements">
+
+    <div class="drop-placeholder" droppable [dropScope]="['tool', 'element']" [dragOverClass]="'placeholder-highlight'" (onDrop)="onDropBlank($event, element.position)">
+      <i class="fas fa-plus"></i> Hier einfügen
+    </div>
+
+    <div class="grid-cell" droppable [dragOverClass]="'drop-highlight'" [dropScope]="element.rows ? '' : 'element'" (onDrop)="onDropElement(element, $event)">
+      <button *ngIf="element.width < 51" type="button" class="btn btn-outline-dark float-right" [ngbTooltip]="'Zweite Spalte einfügen'" (click)="makeColumn(element)"><i class="fas fa-plus-circle"></i></button>
+      <form-element [element]="element" [parent]="parent" [resizable]="true"></form-element>
+    </div>
+
+
+  </ng-container>	
+  <!-- Neue Zeile -->
+  <div class="drop-placeholder drop-lastrow" droppable [dragOverClass]="'placeholder-highlight'" [dropScope]="['tool', 'element']" (onDrop)="onDropBlank($event, parent.rows.length + 1)">
+    <i class="fas fa-plus"></i> Neue Zeile einfügen
+  </div>
+</div>
+
+
+<!-- BoundGroup -->
+<div *ngIf="parent['typ'] && parent['typ'] === 'BoundGroup'">
+  <div class="row">
+    <div class="col-lg-6">
+        <div *ngIf="elements.length === 0 || !elements[0]" class="drop-placeholder drop-lastrow" droppable [dropScope]="['tool', 'element']" [dragOverClass]="'placeholder-highlight'" (onDrop)="onDropBlank($event, 1)">
+          <i class="fas fa-plus"></i> In linke Spalte einfügen
+        </div>
+    
+        <div *ngIf="elements.length > 0 && elements[0]" class="grid-cell" droppable [dragOverClass]="'drop-highlight'" [dropScope]="'element'" (onDrop)="onDropElement(elements[0], $event)">
+          <form-element [element]="elements[0]" [parent]="parent" [resizable]="true"></form-element>
+        </div>
+    </div>
+    <div class="col-lg-6">
+      <div *ngIf="!elements[1] && elements[0]" class="drop-placeholder drop-lastrow" droppable [dropScope]="['tool', 'element']" [dragOverClass]="'placeholder-highlight'" (onDrop)="onDropBlank($event, 2)">
+        <i class="fas fa-plus"></i> In rechte Spalte einfügen
+      </div>
+  
+      <div *ngIf="elements[1]" class="grid-cell" droppable [dragOverClass]="'drop-highlight'" [dropScope]="'element'" (onDrop)="onDropElement(elements[1], $event)">
+        <form-element [element]="elements[1]" [parent]="parent" [resizable]="true"></form-element>
+      </div>  
+    </div>
+  </div>
+</div>

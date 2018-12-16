@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Ja / Nein",
+    "values": ["Ja", "Nein"]
+  },
+  {
+    "name": "Geschlecht",
+    "values": ["männlich", "weiblich"]
+  }
+]

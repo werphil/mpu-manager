@@ -1,0 +1,10 @@
+<ng-container *ngIf="showCategory()">
+  <p-card class="spec-category" [title]="config.Name">
+      <mpu-spec-item *ngFor="let item of config.Items" 
+                    [config]="cfg[item]"
+                    [type]="item"
+                    [value]="element[item]"
+                    (selectElement)="selectElement.emit($event)"
+                    (copyText)="copyText.emit($event)"></mpu-spec-item>
+  </p-card>
+</ng-container>

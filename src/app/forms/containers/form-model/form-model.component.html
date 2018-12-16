@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-1">
+    <mpu-model-tools [config]="toolConfig"></mpu-model-tools>
+  </div>
+  <div class="col">
+    <mpu-model-form [form]="form$ | async" (add)="addElement($event)"></mpu-model-form>
+  </div>
+</div>

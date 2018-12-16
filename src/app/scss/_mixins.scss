@@ -1,0 +1,25 @@
+@mixin circle($size) {
+    display: inline-block;
+    border-radius: 50%;
+    background: #CCC;
+    text-align: center;
+    width: $size;
+    height: $size;
+    line-height: $size; 
+}
+
+@mixin materialInput {
+    background: none;
+    border-radius: 0;
+    padding: 8px 10px;
+    border: none;
+    border-bottom: 2px solid #666;
+    font-size: 16px;
+}
+
+@mixin centerBoth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,158 @@
+
+.element {
+	margin-left: 10px;
+}
+
+.element-body > div {
+	padding: 5px;
+}
+
+.element-label {
+	margin-right: 5px;
+	font-size: 14px;
+	float: left;
+	width: 35%;
+}
+.label-link:hover {
+	color: #3f8bb5;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.element-preview {
+	margin-left: 35%;
+	width: 65%;
+}
+
+.element-werte {
+	margin: 0;
+	padding: 0;
+}
+.element-werte li {
+	list-style: none;
+	margin-left: 5px;
+}
+
+.element-info {
+	color: #228e13;
+	float: right;
+	font-size: 20px;
+	cursor: pointer;
+	margin-right: 5px;
+}
+.element-error {
+	color: #800000;
+	font-size: 20px;
+	cursor: pointer;
+}
+.element-info:hover, .element-error:hover {
+	text-shadow: 0px 0px 2px #3f8bb5;
+}
+
+.element-tools {
+	padding: 5px;
+}
+
+
+/* Toolbar */
+
+.toolbar, .toolbar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+.toolbar li {
+	margin: 0;
+}
+.toolbar > li {
+	display: inline-block;
+	border-radius: 3px;
+	border: 1px solid #999;
+	padding: 0;
+}
+.toolbar > li ul li {
+	padding: 4px;
+	border-left: 1px solid #999;
+	display: inline-block;
+	text-align: center;
+	width: 36px;
+	cursor: pointer;
+	margin: 0;
+}
+.toolbar > li ul li:first-child {
+	border-left: none;
+}
+.toolbar > li ul li:hover {
+	background: #DDD;
+	box-shadow: inset 0 0 3px #000000;
+}
+.toolbar > li ul li.active {
+	box-shadow: inset 0 0 3px #000000;
+}
+
+/* todo: responsive */
+
+
+.validation-select {
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+
+/* Control-Types */
+
+.input-text .element-preview, .input-text-disabled .element-preview {
+	border: 1px solid #333;
+	padding: 2px;
+}
+.input-text-disabled .element-preview {
+	background: #DEDEDE;
+}
+
+.auswahlliste .element-preview {
+	padding: 5px;
+	border: none;
+}
+
+.richtext .element-label, .richtext .element-preview {
+	display: none;
+}
+
+.dropdown .element-preview {
+	border: 1px solid #333;
+	border-radius: 3px;
+	padding: 5px;
+}
+.dropdown .element-werte li {
+	display: none;
+}
+.dropdown .element-werte li:first-child {
+	display: block;
+}
+
+.gruppe {
+	margin-bottom: 10px;
+}
+.gruppe > .element-body {
+	background: #F8F8F8;
+}
+.gruppe > .element-body > div > .element-preview {
+	display: none;
+}
+.gruppe > .element-body > div > .element-label {
+	
+	font-size: 24px;
+	width: 100%;
+	float: none;
+}
+.gruppe > .element-rows {
+	padding-left: 10px;
+	border-left: 2px solid #3f8bb5;
+	margin: 0 -15px;
+}
+
+.element-html {
+	padding: 5px;
+}
+

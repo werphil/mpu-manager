@@ -1,0 +1,20 @@
+.navbar {
+	border-bottom: 6px solid #3f8bb5;
+}
+.spacer {
+	margin-top: 75px;
+}
+
+.current-version {
+	font-weight: bold;
+}
+
+.abstand-links {
+	margin-left: 10px;
+}
+
+#test-copy {
+	position: absolute;
+	left: 50%;
+	top: 0px;
+}

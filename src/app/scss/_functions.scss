@@ -1,0 +1,10 @@
+@import '_variables';
+
+@function color($key) {
+    @if map-has-key($basecolors, $key) {
+      @return map-get($basecolors, $key);
+    }
+  
+    @warn "Farbe `#{$key}` ist nicht definiert.";
+    @return null;
+  }

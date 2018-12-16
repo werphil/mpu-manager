@@ -1,0 +1,16 @@
+<tr>
+  <td>{{ row.id }}</td>
+  <td>{{ row.label }}</td>
+  <td>{{ row.istPflicht | YesNoPipe }}</td>
+  <td>{{ row.typ }}</td>
+  <td></td>
+  <!--<td>
+    <span *ngIf="row.validation.typ === validTyp.None">keine</span>
+    <button *ngIf="row.validation.typ !== validTyp.None" type="button" class="btn btn-secondary">Anzeigen</button>
+  </td>-->
+  <td>Anzeige</td>
+  <td><span *ngIf="row.werte">{{ row.werte.join("|") }}</span></td>
+  <td>{{ row.info }}</td>
+  <td>{{ row.error }}</td>
+  <td>{{ row.repeat | RepeatToText }}</td>
+</tr>

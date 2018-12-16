@@ -1,0 +1,14 @@
+
+<h1 *ngIf="!!selectedElement">{{ controls[selectedElement.Type].Name + ': ' + ((selectedElement.Label.length > 60) ? (selectedElement.Label.substr(0, 60) + '...') : selectedElement.Label) }}</h1>
+<h1 *ngIf="!selectedElement">Formularspezifikation</h1>
+<div class="row">
+  <div class="col-2">
+    <p-tree [value]="(form$ | async)" styleClass="spec-tree" [selection]="selectedNode" selectionMode="single" (onNodeSelect)="onElementSelected($event.node.Id)"></p-tree>
+  </div>
+  <div class="col">
+    <mpu-spec-element [element]="selectedElement$ | async"
+                      [config]="specConfig"
+                      (selectElement)="onElementSelected($event)"
+                      (copyText)="copyText($event)"></mpu-spec-element>
+  </div>
+</div>

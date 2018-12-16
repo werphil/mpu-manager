@@ -1,0 +1,49 @@
+<div class="alert alert-danger" *ngIf="form === null">Das Formular konnte nicht geladen werden.</div>
+<div class="container-fluid" *ngIf="form !== null">
+	<div class="btn-group btn-group-toggle float-right" ngbRadioGroup [(ngModel)]="view.mode">
+		<label ngbButtonLabel class="btn-outline-dark">
+			<input ngbButton type="radio" [value]="'table'"><i class="fa faw fa-table"></i>
+		</label>
+		<label ngbButtonLabel class="btn-outline-dark">
+			<input ngbButton type="radio" [value]="'tree'"><i class="fa faw fa-sitemap"></i>
+		</label>
+	</div>
+	<h1>{{ form.name }} <small *ngIf="view.mode === 'table'">Tabellenansicht</small><small *ngIf="view.mode === 'tree'">Ontologiesicht</small></h1>
+	
+
+	<div *ngIf="view.mode === 'table'" class="">
+		<div class="toolbar">
+			<button type="button" class="btn btn-outline-dark">Anzeigebedingungen highlighten</button>
+		</div>
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item" *ngFor="let p of form.pages index as i">
+				<a [ngClass]="{ 'nav-link': true, 'active': (i === view.currPage) }" (click)="view.currPage = i">{{ p.name }}</a>
+			</li>
+		</ul>
+		
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Label</th>
+					<th scope="col">Pflichtfeld?</th>
+					<th scope="col">Datentyp</th>
+					<th scope="col">Validierung</th>
+					<th scope="col">Anzeigebedingungen</th>
+					<th scope="col">Werte</th>
+					<th scope="col">Infotext</th>
+					<th scope="col">Fehlertext</th>
+					<th scope="col">Repeat</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="form.pages[view.currPage] !== undefined">
+				<spec-table-row *ngFor="let row of form.pages[view.currPage].rows" [row]="row"></spec-table-row>
+			</tbody>
+		</table>
+	</div>
+	
+	<app-treeview *ngIf="view.mode === 'tree'" [form]="form"></app-treeview>
+	
+</div>
+
+

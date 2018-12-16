@@ -1,0 +1,21 @@
+
+
+.resizer {
+	cursor: col-resize;
+	width: 2px;
+	height: 100%;
+	background: #DDD;
+	float: right;
+	position: static;
+}
+
+.resizer:hover {
+	background: #3f8bb5;
+}
+
+.resizer.resizer-active {
+	position: absolute;
+	top: 0px;
+	float: none;
+	z-index: 99;	
+}

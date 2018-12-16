@@ -1,0 +1,101 @@
+.contentHeaderBox {
+	background: -moz-linear-gradient(left, rgba(0,123,175,0.6) 0%, rgba(255,255,255,0.42) 58%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, rgba(0,123,175,0.6) 0%,rgba(255,255,255,0.42) 58%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, rgba(0,123,175,0.6) 0%,rgba(255,255,255,0.42) 58%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007BAF', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+}
+.petitionTable td.petitionCell {
+	background: -moz-linear-gradient(top, rgba(197,223,241,1) 0%, rgba(255,255,255,0.32) 68%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(197,223,241,1) 0%,rgba(255,255,255,0.32) 68%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(197,223,241,1) 0%,rgba(255,255,255,0.32) 68%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C5DFF1', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+.petitionTable td.petitionCellFormStack table td {
+	background: -moz-linear-gradient(top, rgba(197,223,241,1) 0%, rgba(255,255,255,0.32) 68%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(197,223,241,1) 0%,rgba(255,255,255,0.32) 68%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(197,223,241,1) 0%,rgba(255,255,255,0.32) 68%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C5DFF1', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+.ui-widget-header {
+	background: #80BAE1 -moz-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0.5));
+	background: #80BAE1 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,1)), to(rgba(255,255,255,0.5)));
+	background: #80BAE1 linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0.5));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#DDFFFFFF, endColorstr=#00FFFFFF);
+}
+#navigation {
+	background-color: #53a2d7;
+}
+#navigation .treeNavigation .topmenu {
+	background-color: #007BAF;	
+}
+#navigation .treeNavigation .submenu {
+	border-top: 1px solid #007BAF;
+}
+#navigation .treeNavigation .submenu:last-child {
+	border-bottom: 1px solid #007BAF;
+}
+#navigation .treeNavigation .submenu:not(.activePageLink) a {
+	color: white;
+}
+#navigation .treeNavigation .submenu.activePageLink a, 
+#navigation .treeNavigation .submenu a:hover {
+	color: white;
+}
+#navigation .treeNavigation .submenu.activePageLink .placeholder,
+#navigation .treeNavigation .submenu:hover .placeholder {
+	background-color: #007BAF !important;
+}
+#melActionContainer {
+	border-bottom: 1px solid lightgray;
+	color: #5748db;
+}
+#melActionContainer > a {
+	color: white;
+}
+#contentContainer {
+	background-color: inherit;
+}
+.closeCoverButton {
+	color: #3333CC;
+}
+.closeCoverButton:visited {
+	color: #3333CC;
+}
+.outputMessage {
+	background: none repeat scroll 0 0 #ffffff;
+	border: 3px solid #00c400;
+}
+#melContent > .forContent {
+	background-color: inherit;
+	border: 1px solid #0467B3;
+}
+#melContent #coverButtons .coverButton {
+	background: none repeat scroll 0 0 #ABC8E2;
+}
+#melContent #coverButtons .coverButton a {
+	color: #000000;
+}
+#melContent #coverButtons .activeCoverButton {
+	background: none repeat scroll 0 0 #0467B3;
+}
+#melContent #coverButtons .activeCoverButton a {
+	color: white !important;
+}
+.melListPetitionsFormEntry {
+	background-color: #5748DB;
+}
+.melListPetitionsFormEntry .ivpName {
+	background-color: transparent;
+	color: #000000;
+}
+.melListPetitionsFormEntry a {
+	background-color: transparent;
+	color: #5748DB;
+}
+.melDataTable > table .melTableRow:nth-child(4n+1),
+.melDataTable > table .melTableRow:nth-child(4n-2) {
+	background-color: #ffffff;
+}
+.petitionBorder {
+	border: 1px solid #0467B3;
+}

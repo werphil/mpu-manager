@@ -1,0 +1,301 @@
+
+<!-- Richtext -->
+<ng-template #dlgRichtext let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Text ändern</h4>
+	</div>
+	<div class="modal-body">
+		<textarea class="form-control" id="inputRicht-{{ element.id }}" [(ngModel)]="element.label" rows="4"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Notizen -->
+<ng-template #dlgNotes let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Notizen zu diesem Feld</h4>
+	</div>
+	<div class="modal-body">
+		<textarea class="form-control" [(ngModel)]="element.notes" rows="4"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Infotext -->
+<ng-template #dlgInfo let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Infotext bearbeiten</h4>
+	</div>
+	<div class="modal-body">
+		<textarea class="form-control" [(ngModel)]="element.info" rows="4"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Fehlertext -->
+<ng-template #dlgError let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title text-danger">Fehlertext bearbeiten</h4>
+	</div>
+	<div class="modal-body">
+		<textarea class="form-control" [(ngModel)]="element['error']" rows="4"></textarea>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Label ändern -->
+<ng-template #dlgLabel let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Feldbezeichnung ändern</h4>
+	</div>
+	<div class="modal-body">
+		<p>Geben Sie hier die Feldbezeichnung ein</p>
+		<input class="form-control" id="inputLabel-{{ element.id }}" [(ngModel)]="element.label" (keyup.enter)="cok" />
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Ausgabefeld verknüpfen -->
+<ng-template #dlgLink let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Ausgabefeld verknüpfen</h4>
+	</div>
+	<div class="modal-body">
+		<p>Mit welchem Element soll das Ausgabefeld verknüpft werden?</p>
+		<mat-select style="width: 100%" placeholder="Mit dem gewählten Element" [(ngModel)]="element.linkedID">
+			<mat-optgroup *ngFor="let page of allControls" [label]="page.label">
+				<mat-option *ngFor="let el of page.elements" [value]="el.id">
+				{{el.label}}
+				</mat-option>
+			</mat-optgroup>
+		</mat-select>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Vorbefüllung -->
+<ng-template #dlgPrefill let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Vorbefüllung</h4>
+	</div>
+	<div class="modal-body">
+		<p>Aus welchem Register/Formular soll dieses Feld vorbefüllt werden?</p>
+		<input class="form-control" id="inputPrefill-{{ element.id }}" [(ngModel)]="element.prefill" (keyup.enter)="cok" />
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+<!-- Werte bearbeiten -->
+<ng-template #dlgWerte let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Werte bearbeiten</h4>
+	</div>
+	<div class="modal-body" *ngIf="element['werte']">
+		<div class="input-group mb-3">
+		  <input type="text" class="form-control" id="inputNeuerWert-{{ element.id }}" (keyup.enter)="element['werte'].push(eingabe.wert)" placeholder="Neuer Wert..." [(ngModel)]="eingabe.wert">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-primary" [disabled]="eingabe.wert.length === 0" type="button" (click)="element['werte'].push(eingabe.wert)"><i class="fas fa-plus"></i> Hinzufügen</button>
+		  	<div ngbDropdown class="d-inline-block" *ngIf="eingabe.defWerte.length > 0">
+		      <button class="btn btn-outline-dark" ngbDropdownToggle>Standard</button>
+		      <div ngbDropdownMenu>
+		        <button class="dropdown-item" *ngFor="let defval Of eingabe.defWerte" (click)="insertStandardwerte(defval.values)">{{ defval.name }}</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div *ngIf="element['werte'].length === 0" class="alert alert-info">Keine Werte hinterlegt.</div>
+		<ul *ngIf="element['werte'].length > 0" class="list-group">
+			<li *ngFor="let w Of element['werte']" class="list-group-item">
+				<button type="button" class="btn btn-outline-dark float-right" (click)="element['werte'].splice(element.werte.indexOf(w), 1)"><i class="fas fa-trash-alt"></i></button>
+			{{ w }}</li>
+		</ul>
+		
+	</div>
+	<div class="modal-footer">
+		
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+</ng-template>
+
+
+<!-- Element löschen -->
+<ng-template #dlgDelete let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">Element löschen</h4>
+	</div>
+	<div class="modal-body">
+		<p>Wollen Sie {{ element.label }} wirklich löschen?</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-default" (click)="cok">Abbrechen</button>
+		<button type="button" class="btn btn-danger" (click)="cok; parent.removeElement(element)">Löschen</button>
+	</div>
+</ng-template>
+
+<!-- Element löschen -->
+<ng-template #sizer>
+	<mat-slider min="20" max="100" step="10" value="element.width" [(ngModel)]="element.width"></mat-slider>
+</ng-template>
+
+
+<div class="element {{ cfg[element.typ].klasse }}" draggable [dragData]="{ control: element, parent: parent}" [dragScope]="'element'" [dragHandle]="'.drag-handle'">
+
+	<div class="row element-body">
+
+	<!-- Body -->
+	<div class="col-lg-5">
+		<div class="element-label">
+			<span *ngIf="element.repeat && element.repeat !== 'keine'"><i class="fas faw fa-redo-alt {{ (element.repeat === 'Tabelle') ? 'text-secondary': '' }}"></i></span>
+			<span (click)="openDialog(dlgLabel, 'inputLabel')" class="label-link" title="Label bearbeiten">{{ element.label }}<span *ngIf="element.istPflicht">*</span></span>
+			<span *ngIf="element.info" class="element-info" (click)="openDialog(dlgInfo, '')"><i class="fas fa-info-circle" title="{{ element.info }}"></i></span>
+		</div>
+		<div class="element-preview" [ngStyle]="{'width': element.width + '%' }">
+			<i *ngIf="!cfg[element.typ].tools.values" class="fas {{ cfg[element.typ].icon }}"></i>
+			<ul *ngIf="cfg[element.typ].tools.values" class="element-werte">
+				<li *ngIf="!hatWerte()"><i class="fas {{ cfg[element.typ].icon }}"></i> Werte eingeben</li>
+				<li *ngFor="let w Of element.werte"><i class="fas {{ cfg[element.typ].icon }}"></i> {{ w }}</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Toolbar -->
+	<div class="col-lg-7 element-tools">
+		<ul class="toolbar">
+			<li>
+				<ul>
+					<li class="drag-handle" title="Element verschieben">
+						<i class="fas fa-arrows-alt drag-handle"></i>
+					</li>
+				</ul>
+			</li>
+			<!-- Gruppe 1: Label/Richtet, Pflichtfeld, Größe -->
+			<li *ngIf="cfg[element.typ].tools.richtext || cfg[element.typ].tools.label || cfg[element.typ].tools.mandatory || cfg[element.typ].tools.resize">
+				<ul>
+					<li	*ngIf="cfg[element.typ].tools.label" 
+						title="Feldbezeichnung (Label) bearbeiten" 
+						(click)="openDialog(dlgLabel, 'inputLabel')">
+						<i class="fas faw fa-font"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.richtext" 
+						title="Text bearbeiten"  
+						(click)="openDialog(dlgRichtext, 'inputLabel')">
+						<i class="fas faw fa-font"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.mandatory" 
+						title="{{ element.istPflicht ? 'Dies ist kein Pflichtfeld (aktuell als Pflichtfeld definiert)' : 'Als Pflichtfeld definieren (aktuell kein Pflichtfeld)' }}"  
+						[ngClass]="{'active': element.istPflicht }"
+						(click)="element.istPflicht = !element.istPflicht">
+						<i class="fas faw fa-star"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.resize"  
+						title="Größe ändern"
+						[ngbPopover]="sizer" popoverTitle="Größe des Elements ändern">
+						<i class="fas faw fa-arrows-alt-h"></i>
+					</li>
+				</ul>
+			</li>
+			<!-- Gruppe 2: Info/Error -->
+			<li *ngIf="cfg[element.typ].tools.info || cfg[element.typ].tools.error || cfg[element.typ].tools.prefill">
+				<ul>
+					<li *ngIf="cfg[element.typ].tools.info" 
+						title="Hilfetext {{ element.info ? 'bearbeiten' : 'einfügen' }}" 
+						[ngClass]="{'active': element.info }" 
+						(click)="openDialog(dlgInfo, '')">
+						<i class="fas faw fa-info-circle"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.error"  
+						title="Eigenen Fehlertext {{ element.error ? 'bearbeiten' : 'definieren' }}" 
+						[ngClass]="{'active': element.error }"
+						(click)="openDialog(dlgError, '')">
+						<i class="fas faw fa-exclamation-circle"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.prefill"  
+						title="Vorbefüllung" 
+						[ngClass]="{'active': element.prefill }"
+						(click)="openDialog(dlgPrefill, '')">
+						<i class="fas faw fa-share"></i>
+					</li>
+				</ul>
+			</li>
+
+			<!-- Gruppe 3: Sonstige -->
+			<li *ngIf="cfg[element.typ].tools.values || cfg[element.typ].tools.validation || cfg[element.typ].tools.repeat || cfg[element.typ].tools.link ">
+				<ul>
+					<li *ngIf="cfg[element.typ].tools.values" 
+						title="Werteliste bearbeiten"  
+						[ngClass]="{'active': element.werte.length > 0 }" 
+						(click)="openDialog(dlgWerte, 'inputNeuerWert')">
+						<i class="fas faw fa-list-ol"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.link" 
+						title="Element verknüpfen"  
+						[ngClass]="{'active': element.linkedID }" 
+						(click)="openDialog(dlgLink, '')">
+						<i class="fas faw fa-link"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.validation" 
+						title="Validierungen"
+						[ngClass]="{'active': element.validation.length > 0 }"
+						(click)="openValidationDlg()">
+						<i class="fas faw fa-tasks"></i>
+					</li>
+					<li *ngIf="cfg[element.typ].tools.repeat" 
+						title="Wiederholungsverhalten (aktiv: {{ element.repeat }})" 
+						[ngClass]="{'active': element.repeat !== 'keine' }"
+						(click)="toggleRepeat()">
+						<i class="fas faw fa-redo-alt"></i>
+					</li>
+				</ul>
+			</li>
+
+			<!-- Gruppe 4: Default -->
+			<li>
+				<ul>
+					<li [ngClass]="{'active': element.conditions.length > 0 }"
+						title="Anzeigebedingungen"
+						(click)="openConditionDlg()">
+						<i class="fas faw faw fa-eye"></i>
+					</li>
+					<li [ngClass]="{'active': element.notes }"
+						title="Anmerkungen zu diesem Datenfeld" 
+						(click)="openDialog(dlgNotes, '')">
+						<i class="fas faw faw fa-sticky-note"></i>
+					</li>
+					<li title="Element löschen"
+						(click)="openDialog(dlgDelete, '')">
+						<i class="fas faw fa-trash-alt"></i>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+
+	</div><!-- /row -->
+
+	<!-- Elemente -->
+	<div class="element-rows" *ngIf="element.rows">
+		<form-grid [parent]="element"></form-grid>
+	</div>
+
+	<!-- Richtext -->
+	<div class="element-html" *ngIf="element.typ === 'RichText'">
+		{{ element.label }}
+	</div>
+	
+</div>

@@ -1,0 +1,45 @@
+<!-- DIALOGE -->
+
+<!-- SEITENEIGENSCHAFTEN - DIALOG -->
+<ng-template #dlgPage let-cok="close('ok')">
+	<div class="modal-header">
+		<h4 class="modal-title">{{ page.name }} <small>bearbeiten</small></h4>
+	</div>
+	<div class="modal-body">
+		<p>Wie soll die Seite hei&szlig;en?</p>
+		<input class="form-control" [(ngModel)]="page.name" />
+		<br /><br />
+		<button type="button" class="btn btn-primary" (click)="cok; openConditionDlg()"><i class="fas fa-eye"></i> Anzeigebedingungen</button>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="cok">Weiter</button>
+	</div>
+
+</ng-template>
+
+
+
+
+<div [ngClass]="{'grid': true, 'grid-visible': optionen.showGrid}">	
+	
+	<!-- GRID -->
+	<form-grid [parent]="page"></form-grid>
+	
+	
+	<!-- FOOTER -->
+	<div class="bottom-line"></div>
+	<div class="row justify-content-between">
+		<div class="col">
+			<button type="button" class="btn btn-default" (click)="openPageDlg(dlgPage)">Eigenschaften</button>
+		</div>
+		<div class="col">
+			<div class="form-check">
+			<input type="checkbox" [(ngModel)]="optionen.showGrid" class="form-check-input" id="showGridCheckbox" /> 
+			<label class="form-check-label" for="showGridCheckbox">Gitterlinien anzeigen</label>
+		</div>
+		</div>
+		<div class="col text-right">
+			<button type="button" class="btn btn-outline-danger">Seite l&ouml;schen</button>
+		</div>
+	</div>
+</div>

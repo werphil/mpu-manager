@@ -1,0 +1,18 @@
+.toolbox {
+    border: #333 1px solid;
+}
+
+.category {
+    margin-bottom: 10px;
+
+    h3 {
+        font-size: 20px;
+        padding: 5px;
+        text-align: center;
+        background: #EEE;
+    }
+    
+    .tool-item {
+        padding: 10px;
+    }
+}

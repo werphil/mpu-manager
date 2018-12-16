@@ -1,0 +1,20 @@
+.bottom-line {
+	border-top: 2px solid #DDD;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.grid {
+	border: 1px solid #DDD;
+	border-top: none;
+	padding: 10px;
+}
+
+.grid .grid-cell {
+	padding: 5px;
+	margin: 0px 10px;
+}
+
+.grid-visible .grid-cell {
+	border: 1px dotted #DDD;
+}

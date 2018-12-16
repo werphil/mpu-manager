@@ -1,0 +1,21 @@
+
+<div class="alert alert-danger" *ngIf="!form">Formular wurde nicht geladen.</div>
+
+<ng-container *ngIf="!!form">
+  <div class="row">
+    <div class="col-9">
+        <h2>{{ form.Name }}</h2>
+    </div>
+    <div class="col text-right">
+      <button type="button" class="btn btn-secondary"><i class="fas fa-cog"></i></button>
+    </div>
+  </div>
+  
+
+  <p-tabView (onChange)="tabChanged($event)">
+    <p-tabPanel *ngFor="let page of form.Pages; index as i" [header]="page.Label" [selected]="i === selectedIndex">
+      <mpu-model-page [page]="page"></mpu-model-page>
+    </p-tabPanel>
+    <p-tabPanel header="+"></p-tabPanel>
+  </p-tabView>
+</ng-container>

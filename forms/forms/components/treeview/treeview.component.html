@@ -1,0 +1,36 @@
+<div class="row">
+		<div class="col-2 element-menu">
+			<div class="element-suche" *ngIf="false">
+				<input type="text" class="form-control" placeholder="Element-ID suchen..." />
+			</div>
+			<ul class="fa-ul treeview">
+				<li><span class="fa-li"><i class="fas fa-table"></i></span>IVP-Eigenschaften
+					<ul>
+						<li><a [ngClass]="{'active': view.element === form.metadata }" (click)="view.element = form.metadata">Metadaten</a></li>
+						<li><a [ngClass]="{'active': view.element === form.umschlag }" (click)="view.element = form.umschlag">Umschlagtext</a></li>
+					</ul>
+				</li>
+				<li><span class="fa-li"><i class="fas fa-table"></i></span><strong>Elemente</strong>
+					<ul class="fa-ul">
+						<li *ngFor="let p of form.pages">
+							<span class="fa-li"><i class="fas fa-columns"></i></span>
+							<a [ngClass]="{'active': view.element === p }" (click)="view.element = p">{{ p.name }}</a>
+							<spec-element-li *ngFor="let el of p.rows" [element]="el" [viewElement]="view.element" [diffs]="diffs" (clicked)="view.element = $event"></spec-element-li>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="col">
+			<div class="alert alert-info" *ngIf="view.element === null">Kein Element ausgewählt.</div>
+			
+			<div *ngIf="view.element === form.umschlag">
+				{{ form.umschlag }}
+			</div>
+
+			<div *ngIf="view.element !== null && view.element !== form.umschlag">
+				<element-detail [element]="view.element" [change]="getElementChanges()" (elementSelected)="view.element = $event"></element-detail>
+			</div>
+
+		</div>
+	</div>

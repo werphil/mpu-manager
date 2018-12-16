@@ -1,0 +1,17 @@
+
+<h3>Übersicht</h3>
+<p-card>
+  <table class="table">
+    <tbody>
+        <tr class="table-active" mpu-form-item-version [formId]="form.Id" [version]="form.LatestVersion" stage="L"></tr>
+        <tr class="table-success" mpu-form-item-version [formId]="form.Id" [version]="form.DeployedVersions.SystemP" stage="P"></tr>
+        <tr class="table-warning" mpu-form-item-version [formId]="form.Id" [version]="form.DeployedVersions.SystemQ" stage="Q"></tr>
+        <tr mpu-form-item-version [formId]="form.Id" [version]="form.DeployedVersions.SystemT" stage="T"></tr>
+    </tbody>
+  </table>
+</p-card>
+
+<h3 class="mt-4">Versionsverwaltung</h3>
+<p-card>
+  <mpu-form-versions [versions]="form.AllVersions" [latestVersion]="form.LatestVersion" [formId]="form.Id"></mpu-form-versions>
+</p-card>

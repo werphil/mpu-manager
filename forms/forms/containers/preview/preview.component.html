@@ -1,0 +1,75 @@
+<div class="alert alert-danger" *ngIf="form === null">Das Formular konnte nicht geladen werden.</div>
+<div class="container-fluid" *ngIf="form !== null">
+    <h2>Vorschau</h2>
+
+    <div class="wrapper-outer">
+        <div class="wrapper-inner">
+
+            <div class="closeButton">
+                <img src="assets/mpustyle/umschlag/action_close.png" alt="Fenster schließen" title="Fenster schließen" class="closeCoverImage" />
+            </div>
+            <div class="ivpTitle">
+                {{ form.name }}
+            </div>
+            <div class="ivpLogo">
+            </div>
+
+            <div class="mainnav">
+                <ul>
+                    <li [ngClass]="{'active': show.umschlag }" (click)="show.umschlag = true">Umschlag</li>
+                    <li [ngClass]="{'active': !show.umschlag }" (click)="show.umschlag = false">Formular</li>
+                    <li class="disabled">Änderungsprotokoll</li>
+                </ul>
+            </div>
+            <div class="main">
+                <div class="umschlag" *ngIf="show.umschlag">
+                    <h3>Datenübernahme</h3>
+                    <p>Sie haben die Möglichkeit Ihre Daten aus folgenden Quellen zu übernehmen: Unternehmensregister, Zentrales Melderegister, Personenstandsregister. Mit der Auswahl "Vorbefüllung personenbezogener Daten" bzw. "Vorbefüllung unternhemensbezogener Daten" stimmen Sie der Übernahme Ihrer Daten in das Formular zu und müssen diese Daten nicht erneut eingeben. Alternativ können Sie durch Deaktivierung alle erforderlichen Angaben auch händisch eingeben.</p>
+                    
+                    <h3>Zustimmungserklärungen</h3>
+                    <p>Ich stimme zu, dass Daten aus den oben genannten Registern für die Befüllung des Formulars übernommen werden.</p>
+                    
+                    <p><input type="checkbox" disabled checked /> Vorbefüllung personenbezogener Daten</p>
+                    
+                    <h3>Einleitende und allgemeine Erläuterungen zur Meldung</h3>
+                    <p>{{ form.umschlag }}</p>
+
+                    <div class="footer">
+                        <button type="button" (click)="show.umschlag = false" class="button">Weiter zum Formular</button>
+                    </div>
+               </div>
+               
+               <div class="form" *ngIf="!show.umschlag">
+                   <form *ngIf="formdata !== null" [formGroup]="formdata">
+                   <div class="formnav">
+                       <ul>
+                            <ng-container *ngFor="let page of form.pages">
+                                <ng-container *ngIf="!page.hide && showPage(page)">
+                                    <li [ngClass]="{'active': page === show.page }" (click)="show.page = page">{{ page.name }} <img *ngIf="!formdata.get('p'+ page.id).valid && formdata.get('p'+ page.id).dirty" class="invalid-img" src="assets/mpustyle/form/invalid_value.png" alt="!" /></li>
+                                    <li class="pfeil">&gt;</li>
+                                </ng-container>
+                            </ng-container>
+                            <li class="zusammenfassung">Zusammenfassung</li>
+                       </ul>
+                   </div>
+                   <div class="formwrapper" *ngIf="show.page !== null">
+                        <app-preview-element *ngFor="let row of show.page.rows" [element]="row" [form]="formdata.get('p'+ show.page.id)"></app-preview-element>
+                    </div>
+                   <div class="formbuttons">
+                        <button type="button" class="button" *ngIf="notFirstPage()">&lt; Zurück</button>
+                        <button type="button" class="button">Weiter &gt;</button>
+                        <button type="button" class="button">Prüfen</button>
+                        <button type="button" class="button disabled">Zwischenspeichern</button>
+                        <button type="button" class="button disabled">Schließen</button>
+                   </div>
+                </form>
+               </div>
+               
+            </div>
+                
+
+        </div>
+    </div>
+
+</div>
+

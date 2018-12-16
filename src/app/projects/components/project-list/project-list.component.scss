@@ -1,0 +1,21 @@
+@import 'index';
+
+.new-form {
+    font-weight: bold;
+}
+
+.action-bar {
+
+    
+    button {
+        float: right;
+        display: block;
+    }
+
+    input {
+        @include materialInput();
+        display: inline-block;
+        width: 600px;
+        margin-right: 10px;
+    }
+}

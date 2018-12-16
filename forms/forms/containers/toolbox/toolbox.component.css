@@ -1,0 +1,45 @@
+.toolbox {
+	box-shadow: 0px 0px 1px 1px #999;
+	padding: 10px;
+	margin: 0 10px;
+	position: fixed;
+}
+
+.toolbox li.list-group-item {
+	cursor: move;
+}
+
+
+
+
+
+.ablage {
+	margin-top: 15px;
+	border: 1px solid #999;
+	border-radius: 4px;
+}
+.ablage-header {
+	background: #F2F2F2;
+	padding: 5px;
+	border-bottom: 1px solid #999; 
+	font-weight: bold;
+}
+.removeIcon {
+	cursor: pointer;
+}
+.ablage-area {
+	font-size: 48px;
+	text-align: center;
+	padding: 20px 0;
+}
+.ablage-area.drag-over {
+	border: 2px ridge #3f8bb5;
+	text-shadow: 0px 0px 2px #3f8bb5;
+}
+.ablage-dropped {
+	margin: 10px;
+	border-radius: 3px;
+	border: 1px solid #DDD;
+	padding: 3px;
+	cursor: move;
+}

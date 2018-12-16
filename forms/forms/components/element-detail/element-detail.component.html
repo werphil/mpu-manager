@@ -1,0 +1,185 @@
+<div class="element-container">
+  <h2 *ngIf="element.label">{{ element.label }}</h2>
+  <h2 *ngIf="element.name">{{ element.name }}</h2>
+
+  <!-- Allgemein -->
+  <div class="card">
+      <div class="card-header">
+        Allgemein
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <tbody>
+                <tr *ngIf="element.label" [ngClass]="{'hasChanged': change && change.label }">
+                  <th scope="row"><i class="fas fa-font"></i></th>
+                  <td>Label</td>
+                  <td>{{ element.label }}</td>
+                  <td><button type="button" class="btn btn-outline-dark" (click)="c2c(element.label)" title="In die Zwischenablage kopieren">
+                        <i class="fas fa-copy"></i></button>
+                  </td>
+                </tr>
+        
+                <!-- Name für Seiten -->
+                <tr *ngIf="element.name">
+                  <th scope="row"><i class="fas fa-font"></i></th>
+                  <td>Seitenname</td>
+                  <td>{{ element.name }}</td>
+                  <td><button type="button" class="btn btn-outline-dark" (click)="c2c(element.name)" title="In die Zwischenablage kopieren">
+                      <i class="fas fa-copy"></i></button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row"><i class="fas fa-id-badge"></i></th>
+                  <td>Globale ID</td>
+                  <td>{{ element.id }}</td>
+                </tr>
+
+                <tr>
+                  <th scope="row"><i class="fas fa-question"></i></th>
+                  <td>Elementtyp</td>
+                  <td>{{ element.typ }}</td>
+                </tr>
+
+                <tr *ngIf="element.istPflicht !== undefined && element.istPflicht !== null" [ngClass]="{'hasChanged': change && change.istPflicht }">
+                  <th scope="row"><i class="fas fa-star"></i></th>
+                  <td>Pflichtfeld</td>
+                  <td>{{ element.istPflicht | YesNoPipe }}</td>
+                </tr>
+
+                <tr *ngIf="element.notes" [ngClass]="{'hasChanged': change && change.notes }">
+                  <th scope="row"><i class="fas fa-sticky-note"></i></th>
+                  <td>Anmerkungen</td>
+                  <td>{{ element.notes }}</td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Layout -->
+  <div class="card">
+      <div class="card-header">
+        Layout und Positionierung
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <tbody>
+                <tr *ngIf="element.position">
+                  <th scope="row"><i class="fas fa-child"></i></th>
+                  <td>Parentelement</td>
+                  <td *ngIf="getParent(element).root">root</td>
+                  <td *ngIf="!getParent(element).root">{{ (getParent(element).isGroup) ? 'Gruppe' : 'Seite' }} &lt;<a href="javascript:void(0)" (click)="selectElement(getParent(element).parent)">{{ getParent(element).text }}</a>&gt;</td>
+                </tr>
+                <tr *ngIf="element.position">
+                  <th scope="row"><i class="fas fa-sort-numeric-down"></i></th>
+                  <td>Position im Parentelement</td>
+                  <td>{{ element.position }}</td>
+                </tr>
+                <tr *ngIf="element.rows">
+                    <th scope="row"><i class="fas fa-th-list"></i></th>
+                    <td>Enthaltene Child-Elemente</td>
+                    <td *ngIf="element.rows.length > 0"><span *ngFor="let row of element.rows"><a href="javascript:void(0)" (click)="selectElement(row)">{{ row.label || row.typ }}</a> | </span></td>
+                    <td *ngIf="element.rows.length === 0">keine</td>
+                  </tr>
+                <tr *ngIf="element.width">
+                  <th scope="row"><i class="fas fa-arrows-alt-h"></i></th>
+                  <td>Breite</td>
+                  <td>{{ element.width }}</td>
+                </tr>
+
+                <tr *ngIf="element.conditions">
+                  <th scope="row"><i class="fas fa-eye"></i></th>
+                  <td>Anzeigebedingungen</td>
+                  <td *ngIf="element.hide">Element nicht anzeigen (1 != 1)</td>
+                  <td *ngIf="!element.hide">
+                    <span *ngIf="element.conditions.length === 0">keine</span>
+                    <span *ngFor="let cond of element.conditions">
+                      <span *ngIf="cond.position > 1">{{ cond.mode }}</span>  id({{ cond.id }}) {{ cond.operator }} {{ cond.value }} 
+                    </span>
+                  </td>
+                </tr>
+
+                <tr *ngIf="element.repeat">
+                  <th scope="row"><i class="fas fa-redo-alt"></i></th>
+                  <td>Element wiederholen</td>
+                  <td>als {{ element.repeat }}</td>
+                </tr>
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Texte / Prefill -->
+  <div class="card" *ngIf="element.info || element.error || element.prefill">
+      <div class="card-header">
+        Texte und Vorbefüllung
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <tbody>
+                <tr *ngIf="element.info">
+                  <th scope="row"><i class="fas fa-info-circle"></i></th>
+                  <td>Infotext</td>
+                  <td>{{ element.info }}</td>
+                  <td><button type="button" class="btn btn-outline-dark" (click)="c2c(element.info)" title="In die Zwischenablage kopieren">
+                      <i class="fas fa-copy"></i></button>
+                  </td>
+                </tr>
+                <tr *ngIf="element.error">
+                  <th scope="row"><i class="fas fa-exclamation-circle"></i></th>
+                  <td>Eigener Fehlertext</td>
+                  <td>{{ element.error }}</td>
+                  <td><button type="button" class="btn btn-outline-dark" (click)="c2c(element.error)" title="In die Zwischenablage kopieren">
+                      <i class="fas fa-copy"></i></button>
+                  </td>
+                </tr>
+
+                <tr *ngIf="element.prefill">
+                  <th scope="row"><i class="fas fa-share"></i></th>
+                  <td>Vorbefüllung</td>
+                  <td>{{ element.prefill }}</td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+        
+  <!-- Werte / Validierung -->
+  <div class="card" *ngIf="element.werte || element.link || element.validation">
+      <div class="card-header">
+        Werte und Validierungen
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <tbody>
+                <tr *ngIf="element.werte">
+                  <th scope="row"><i class="fas fa-list-ol"></i></th>
+                  <td>Werte für dieses Element</td>
+                  <td>{{ element.werte.join("|")  }}</td>
+                </tr>
+                <tr *ngIf="element.link">
+                  <th scope="row"><i class="fas fa-link"></i></th>
+                  <td>Verknüpftes Element (ID)</td>
+                  <td>{{ element.linkedID }}</td>
+                </tr>
+
+                <tr *ngIf="element.validation">
+                  <th scope="row"><i class="fas fa-tasks"></i></th>
+                  <td>Feldvalidierung</td>
+                  <td>{{ getValidation(element) }}</td>
+                  <td><button type="button" class="btn btn-outline-dark" (click)="c2c(getValidation(element))" title="In die Zwischenablage kopieren">
+                      <i class="fas fa-copy"></i></button>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+        
+
+
+
+
+</div>

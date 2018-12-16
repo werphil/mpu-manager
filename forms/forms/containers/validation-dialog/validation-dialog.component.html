@@ -1,0 +1,134 @@
+<div class="modal-header">
+		<h4 class="modal-title">Gültige Werte für dieses Feld</h4>
+	</div>
+	<div class="modal-body">
+		<mat-select placeholder="Erlaubter Datentyp" [(ngModel)]="active.validation.typ" class="validation-select">
+			<mat-option *ngFor="let val of validierungen" [value]="val.typ">
+				{{ val.name }}
+			</mat-option>
+		</mat-select>
+
+		<mat-card *ngIf="active.validation.typ !== validTyp.None">
+
+			<div class="form-group row" *ngIf="validConfig[active.validation.typ].minmax">
+				<label for="validationMin" class="col-sm-7 col-form-label">Mindest{{ (active.validation.type === validTyp.Text) ? 'anzahl Zeichen' : 'wert' }}</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="validationMin" [(ngModel)]="active.validation.min">
+				</div>
+			</div>
+			<div class="form-group row" *ngIf="validConfig[active.validation.typ].minmax">
+				<label for="validationMax" class="col-sm-7 col-form-label">Maximal<span *ngIf="active.validation.type === validTyp.Text">e Anzahl Zeichen</span></label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="validationMax" [(ngModel)]="active.validation.max">
+				</div>
+			</div>
+			<div class="form-group row" *ngIf="validConfig[active.validation.typ].kommastellen">
+				<label for="validationKomma" class="col-sm-7 col-form-label">Kommastellen</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="validationKomma" [(ngModel)]="active.validation.komma">
+				</div>
+			</div>
+
+			<div *ngIf="validConfig[active.validation.typ].pattern">
+				<input type="text" class="form-control" readonly value="{{ validConfig[active.validation.typ].pattern }}">
+			</div>
+
+			<div class="form-group" *ngIf="active.validation.typ === validTyp.Regex">
+					<button type="button" class="btn btn-outline-dark float-right" disabled>Als Vorlage speichern</button>
+					<mat-form-field class="w-100">
+						<input matInput placeholder="Regex eingeben" [(ngModel)]="active.validation.regex">
+					</mat-form-field>
+			</div>
+				
+			<div class="form-group" *ngIf="active.validation.typ === validTyp.Custom">
+				<div class="validation-toolbar">
+					<ul>
+						<li *ngFor="let patt of patterns" (click)="add(patt.type)" title="{{ patt.name }}">
+								<i class="fas fa-{{ patt.icon }}"></i> {{ patt.name }}
+						</li>
+					</ul>
+				</div>
+      <div class="valid-toolbox" *ngIf="activePattern >= 0 && active.validation.custom[activePattern].type !== patternTyp.Or">
+				<span class="float-right" (click)="activePattern = -1">&times;</span>
+				<div *ngIf="patterns[active.validation.custom[activePattern].type].menge">
+					<i class="fas fa-sync"></i> Diese Gruppe darf 
+					<mat-select [(ngModel)]="active.validation.custom[activePattern].anzahl.art" class="inline-input-long">
+							<mat-option [value]="anzahlTyp.Alle">unbegrenzt</mat-option>
+							<mat-option [value]="anzahlTyp.Genau">genau</mat-option>
+							<mat-option [value]="anzahlTyp.Zwischen">zwischen</mat-option>
+					</mat-select> 
+
+					<span *ngIf="active.validation.custom[activePattern].anzahl.art !== anzahlTyp.Alle">
+						<mat-form-field class="inline-input">
+							<input type="number" matInput  [(ngModel)]="active.validation.custom[activePattern].anzahl.minValue">
+						</mat-form-field>
+
+						<span *ngIf="active.validation.custom[activePattern].anzahl.art === anzahlTyp.Zwischen">
+							und 
+							<mat-form-field class="inline-input">
+								<input type="number" matInput  [(ngModel)]="active.validation.custom[activePattern].anzahl.max" >
+							</mat-form-field>
+						</span>
+						Mal 
+					</span>
+					 oft vorkommen.
+				</div>
+				<div *ngIf="patterns[active.validation.custom[activePattern].type].range === rangeTyp.Numbers">
+					<i class="fas fa-sort-numeric-down"></i> Erlaubte Zahlen sind <mat-select [(ngModel)]="active.validation.custom[activePattern].zeichen.art" class="inline-input-long">
+							<mat-option [value]="anzahlTyp.Alle">alle (0-9)</mat-option>
+							<mat-option [value]="anzahlTyp.Genau">genau</mat-option>
+							<mat-option [value]="anzahlTyp.Zwischen">zwischen</mat-option>
+					</mat-select> 
+					<span *ngIf="active.validation.custom[activePattern].zeichen.art !== anzahlTyp.Alle">
+							<mat-form-field class="inline-input">
+								<input type="number" matInput  [(ngModel)]="active.validation.custom[activePattern].zeichen.minValue">
+							</mat-form-field>
+	
+							<span *ngIf="active.validation.custom[activePattern].zeichen.art === anzahlTyp.Zwischen">
+								und 
+								<mat-form-field class="inline-input">
+									<input type="number" matInput  [(ngModel)]="active.validation.custom[activePattern].zeichen.max" >
+								</mat-form-field>
+							</span>
+						</span>
+				</div>
+				<div *ngIf="patterns[active.validation.custom[activePattern].type].range === rangeTyp.Letters">
+						<i class="fas fa-sort-alpha-down"></i> Erlaubte Zeichen sind <mat-select [(ngModel)]="active.validation.custom[activePattern].zeichen.art" class="inline-input-xlong">
+								<mat-option [value]="anzahlTyp.Alle">alle (A-Z und a-z)</mat-option>
+								<mat-option [value]="anzahlTyp.Genau">nur diese</mat-option>
+						</mat-select> 
+						<span *ngIf="active.validation.custom[activePattern].zeichen.art !== anzahlTyp.Alle">
+								<mat-form-field class="inline-input-xlong">
+									<input type="text" matInput  [(ngModel)]="active.validation.custom[activePattern].zeichen.minValue">
+								</mat-form-field>
+								<i class="fas fa-info-circle" matTooltip="Gib die erlaubten Zeichen ohne Abstand der Reihe nach an. Groß/Kleinschreibung wird unterschieden!"></i>
+						</span>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" [(ngModel)]="active.validation.custom[activePattern].optional" id="pattOptional">
+					<label class="form-check-label" for="pattOptional">
+						Diese Gruppe ist optional
+					</label>
+				</div>
+			</div>
+			<mat-form-field class="w-100">
+        <mat-chip-list #patternList>
+					<mat-chip *ngFor="let patt of active.validation.custom; index as i" [removable]="true" value="patt" [selected]="active.validation.custom[activePattern] === patt" 
+										(removed)="remove(patt)" (click)="activePattern = i" [ngClass]="{'valid-optional': patt.optional}">
+            {{ getViewtext(patt) }}
+            <i class="fas fa-times" matChipRemove></i>
+          </mat-chip>
+          <input placeholder="Bedingungen hinzufügen..."
+              [matChipInputFor]="patternList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addFromText($event)" />
+        </mat-chip-list>
+			</mat-form-field>
+					  
+			</div>
+		</mat-card>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="activeModal.close('ok')">Weiter</button>
+	</div>

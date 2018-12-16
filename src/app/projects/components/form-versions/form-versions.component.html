@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-3">
+      <p-tree [value]="versions" selectionMode="single" [(selection)]="active"></p-tree>
+    </div>
+    <div class="col" *ngIf="!!active">
+      <div class="row">
+        <div class="col-6">
+            <h4>{{ active.label }} (auf Q)</h4>
+        </div>
+        <div class="col">
+          <div class="btn-group" role="group">
+              <button type="button" class="btn btn-secondary btn-mat" (click)="emitStage('T')">auf T</button>
+              <button type="button" class="btn btn-secondary btn-mat">auf Q</button>
+              <button type="button" class="btn btn-secondary btn-mat">auf P</button>
+          </div>
+        </div>
+        <div class="col text-right">
+          <a [routerLink]="'/forms/' + formId + '/' + active.data + '/' + active.Number" class="btn btn-primary btn-mat">
+            <i class="fas fa-external-link-alt"></i> Öffnen
+          </a> 
+        </div>
+      </div>
+      
+      <table class="table table-striped mt-3">
+        <tbody>
+          <tr>
+            <td>Anmerkungen</td>
+            <td *ngIf="!!active.Notes">{{ active.Notes }}</td>
+            <td *ngIf="!active.Notes">N/A</td>
+          </tr>
+          <tr>
+            <td>Zuletzt bearbeitet am</td>
+            <td *ngIf="!!active.LastEdit">{{ active.LastEdit | date: 'd.M.y H:m' }} Uhr</td>
+            <td *ngIf="!active.LastEdit">N/A</td>
+          </tr>
+          <tr>
+            <td>Zuletzt bearbeitet von</td>
+            <td *ngIf="!!active.LastEditBy">{{ active.LastEditBy }}</td>
+            <td *ngIf="!active.LastEditBy">N/A</td>
+          </tr>
+          <tr>
+              <td>Erstellt am</td>
+              <td *ngIf="!!active.CreationDate">{{ active.CreationDate | date: 'd.M.y H:m' }} Uhr</td>
+              <td *ngIf="!active.CreationDate">N/A</td>
+            </tr>
+            <tr>
+              <td>Erstellt von</td>
+              <td *ngIf="!!active.CreatedBy">{{ active.CreatedBy }}</td>
+              <td *ngIf="!active.CreatedBy">N/A</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+@import 'index';
+
+.top-navigation {
+    background: #f8f9fa;
+    box-shadow: 0px 1px 0px 2px #999;
+    margin-bottom: 25px;
+    height: 70px;
+    line-height: 70px;
+
+    .mpu-title {
+        font-size: 20px;
+        padding-left: 20px;
+    }
+
+    .nav-item {
+        display: block;
+        float: left;
+    }
+
+    .logo {
+        background: #333;
+        color: white;
+        padding: 0 10px;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: none;
+            background: #666;
+        }
+    }
+
+    ul.navigation {
+        margin: 0;
+        padding: 0;
+
+        li {
+            float: left;
+            margin: 0;
+            list-style: none;
+
+            a {
+                color: #333;
+                font-size: 18px;
+                display: block;
+                padding: 0 15px;
+
+                &.active {
+                    font-weight: bold;
+                    background: #DDD;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    color: black;
+                    background: #EEE;
+                }
+
+            }
+        }
+    }
+
+    .login {
+        display: flex;
+        float: right;
+
+        .icon {
+            @include circle(50px);
+            margin: 10px;
+            font-size: 28px;
+            color: white;
+        }
+    }
+    
+}
+
+

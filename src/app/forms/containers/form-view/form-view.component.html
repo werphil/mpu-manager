@@ -1,0 +1,20 @@
+<mpu-topnav [showMenu]="true" [formName]="(projectForm$ | async).ProjectName + ' / ' + (projectForm$ | async).Name" loginName="Max Mustermann"></mpu-topnav>
+
+	
+<div class="d-flex center" *ngIf="loading$ | async">
+    <p-progressSpinner></p-progressSpinner>
+    <p class="p-5"><strong>Formulardatei wird geladen...</strong></p>
+</div>
+
+<ng-container *ngIf="loaded$ | async">
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</ng-container>
+
+<div class="error" *ngIf="!(loaded$ | async) && !(loading$ | async)">
+    <div class="center">
+        <h1>:( Oje</h1>
+        <p>Das Formular konnte nicht geladen werden.</p>
+    </div>
+</div>

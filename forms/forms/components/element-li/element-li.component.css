@@ -1,0 +1,28 @@
+ul {
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+}
+li {
+    margin: 0;
+    padding: 0;
+}
+
+li .fa-li, ul li .fa-li {
+    margin-left: 15px;
+}
+li a {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+}
+li a:hover {
+    background: #F5F5F5;
+}
+li a.active {
+    font-weight: bold;
+}
+li a.hasChanges {
+    border-left: 4px solid red;
+}

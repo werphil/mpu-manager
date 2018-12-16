@@ -1,0 +1,2 @@
+<div *ngIf="!(form$ | async)" class="alert alert-danger">Formular kann nicht angezeigt werden.</div>
+<mpu-form-details *ngIf="!!(form$ | async)" [form]="form$ | async"></mpu-form-details>

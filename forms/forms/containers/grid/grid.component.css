@@ -1,0 +1,33 @@
+.drop-highlight-new, .grid-visible .grid-cell.drop-highlight-new {
+	box-shadow: 0px 0px 1px 1px #177a22 !important;
+}
+
+.drop-highlight, .grid-visible .grid-cell.drop-highlight {
+	border: 2px solid #b29b27 !important;
+}
+
+.drop-indicate, .grid-visible .grid-cell.drop-indicate {
+	border: 1px dotted #333;
+}
+.drop-indicate-new, .grid-visible .grid-cell.drop-indicate-new {
+	box-shadow: 0px 0px 1px 1px #333;
+	padding: 5px;
+}
+
+.drop-placeholder {
+	height: 10px;
+	color: transparent;
+	overflow: hidden;
+	font-size: 18px;
+}
+.drop-placeholder.drop-lastrow {
+	height: 30px;
+}
+.drop-placeholder.placeholder-highlight {
+	padding: 15px;
+	height: 55px;
+	border: 2px ridge #3f8bb5;
+	color: #333;
+	overflow: visible;
+	margin: 0px 10px;
+}

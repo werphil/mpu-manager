@@ -1,0 +1,27 @@
+
+<p-card [title]="project.Name" class="project">
+  <div class="row">
+    <div class="col-4">
+      <p class="subtitle">{{ project.Forms.length + ' Formular' + ((project.Forms.length === 1) ? '' : 'e') }}</p>
+    </div>
+    <div class="col-8 text-right">
+      <a routerLink="" (click)="addForm.emit({ id: project.Id, name: project.Name })" class="btn-mat new-form"><i class="fas fa-plus"></i> Neues Formular</a>
+    </div>
+  </div>
+  
+  <hr />
+
+  <ul class="fa-ul">
+    <li *ngFor="let formular of project.Forms">
+        <span class="fa-li" ><i class="fas fa-file-alt"></i></span>
+        <a [routerLink]="'forms/' +  formular.Id">{{ formular.Name }}</a> |
+        <span *ngIf="!!formular.Stage">{{ formular.Stage }} v{{ formular.StageVersion.MajorVersion }}.{{ formular.StageVersion.MinorVersion }}</span>
+        <span *ngIf="!formular.Stage">modelliert</span>
+    </li>
+  </ul>
+
+
+  <p class="mt-4">
+    <a class="btn btn-outline-dark ml-1 disabled">Als Formularsammlung öffnen</a>
+  </p>
+</p-card>

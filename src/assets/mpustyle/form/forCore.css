@@ -1,0 +1,997 @@
+body {
+	margin: 0px;
+}
+a:focus {
+	border: dashed 1px black;
+}
+a:link, a:visited, a:active {
+	color: blue;
+}
+#bfDebug.closed {
+	display: none;
+	width: 0px;
+	opacity: 0;
+}
+/****** Navigation panel *******/
+.arrowClass {
+	color: #3333CC;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+	display: inline-block;
+
+	vertical-align: middle;
+	margin-left: 5px;
+}
+#navigation {
+	background-color: white;
+}
+#navigation .xfControl.xfTrigger .validationInfoContainer {
+	display: inline;
+}
+#navigation .xfControl.xfTrigger .validationInfoContainer .invalidPageImg {
+	position: relative;
+	top: 3px;
+	height: 12pt;
+}
+#navigation .xfControl.xfTrigger:not(.invalidPage) .validationInfoContainer .invalidPageImg {
+	display: none;
+}
+#navigation .xfControl {
+	display: inline-block;
+	padding-left: 0.5em;
+}
+#navigation .summaryPageLink .xfValue {
+	color: #AAAAAA !important;
+	pointer-events: none;
+   	cursor: default;
+}
+#navigation .xfControl:not(.activePageLink) .xfValue {
+	background-color: transparent;
+	color: #3333CC;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+	
+	vertical-align: middle;
+	
+	margin-left: 3px;
+	margin-right: 5px;	
+	padding-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+}
+#navigation .xfTrigger .disabledLink {
+	pointer-events: none;
+}
+#navigation .activePageLink {
+	pointer-events: none;
+   	cursor: default;
+}
+#navigation .xfTrigger h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	display: inline-block;
+}
+#navigation .activePageLink .xfValue {
+	background: #3333CC;
+	color: #FFFFFF;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+	
+	vertical-align: middle;
+	
+	margin-left: 3px;
+	margin-right: 5px;	
+	padding-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+}
+/********* Error-Box ***********/
+#errorBox {
+	background: none repeat scroll 0px 0px #ffffff;
+	border: 2px solid #aa0000;
+}
+#errorBox .errorBoxEntry .xfTrigger .xfValue {
+	color: #AA0000;
+	text-align: left;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;	
+	padding-left: 1.5em;
+}
+#errorBox .errorBoxEntry .errorHeadline,
+#errorBox .errorBoxEntry span {
+	color: #AA0000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;	
+	padding-left: 0.7em;
+}
+#errorBox .errorBoxEntry .errorFooter {
+	color: #AA0000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 8pt;	
+	padding-left: 0.7em;
+}
+/********* FOR-Message-Box **************/
+.forSuccessMessageBox {
+	background: none repeat scroll 0 0 #ffffff;
+	border: 3px solid #00c400;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	display: none;
+}
+.forSuccessMessageBox > .message,
+.forFailedMessageBox > .message {
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;
+	padding-left: 1.5em;	
+}
+.forFailedMessageBox {
+	background: none repeat scroll 0 0 #ffffff;
+	border: 3px solid red;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	display: none;
+}
+/********* Form-Content section *********/
+#formBorder {
+	border: 2px solid #3333CC;
+}
+#resizeableForm {
+	background: none repeat scroll 0px 0px #ECF5FA;
+	height: 30em;
+	overflow: hidden;
+}
+#formContentBody {
+	padding-top: 1.2em;
+	padding-left: 0.8em;
+	padding-bottom: 3em;
+}
+.xfGroupLabel h2 {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	font-size: 1em;
+}
+.groupTitle {
+	background-color: #D6E5F8;
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 9pt;
+	
+	vertical-align: middle;	
+	padding: 0.5em;
+	margin-bottom: 1.2em;
+	width: 95%;
+}
+.xfControl.xfAddressSearch {
+	/* background-color: #D6E5F8; */
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 9pt;
+
+	vertical-align: middle;	
+	padding: 0.6em;
+	padding-left: 0.2em;
+	margin-top: 1em;
+	width: 95%;
+}
+.xfControl.xfAddressSearch .xfLabel {
+	font-style: italic;
+	font-weight: bold;
+}
+.xfControl.xfAddressSearch .widgetContainer {
+	width: auto;
+}
+.xfControl.xfAddressSearch .addressSearchLabel {
+	display: inline-block;
+	width: 200px;
+	text-align: right;
+}
+.xfControl.xfAddressSearch input.xfAddressSearch {
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	
+	border-style: solid;
+	border-width: 1px;
+	border-color: #C8C8C8;
+
+	height: 18px;
+	line-height: 18px;
+}
+.xfControl.xfAddressSearch .addressSearchImg {
+	width: 16px;
+	vertical-align: middle;
+}
+.xfControl.xfAddressSearch .suggestionBox {
+	position: absolute;
+	z-index: 1000;
+	background: white;
+
+	width: 100%;
+}
+.xfControl.xfAddressSearch .suggestionBox .suggestion {
+	padding: 0.4em;
+}
+.xfControl.xfAddressSearch .suggestionBox .suggestion:hover,
+.xfControl.xfAddressSearch .suggestionBox .suggestion:focus {
+	color: white;
+	background: #0467B3;
+	cursor: default;
+}
+/*Overwrite from betterFORM.css*/
+.xfRequired .bfTableLabel:after {
+	content: none;
+	color: #000000;
+}
+.xfControl{
+	display: block;
+}
+/* Overwrite Default-Display-Style from betterform.css */
+.xfFullGroup .xfControl {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.xfFullGroup .xfLabel {
+	width: auto;
+}
+/* Overwrite Default-Display-Style from betterform.css */
+.xfGroup {
+	margin-bottom: 5px;
+}
+.xfGroup .xfFullGroup {
+	overflow: visible;
+}
+.xfGroup:not(:first-child):not(.xfRepeated):not(.fullExpandableRepeatBody) {
+	margin-top: 15px;
+}
+.xfControl .labelContainer {
+	display: inline-block;
+	width: 200px;
+	text-align: right;
+	vertical-align: top;
+	line-height: 11pt;
+}
+.xfControl .labelContainer .invalidInput {
+	margin-right: 3px;
+	display: inline;
+	position: relative;
+	top: -2px;
+}
+.xfControl:not(.xfRequiredEmpty):not(.xfInvalid) .labelContainer .invalidInput,
+.xfControl.xfReadOnly .labelContainer .invalidInput {
+	display: none;
+}
+.xfControl:not(.xfRequiredEmpty) .widgetContainer .defaultAlert,
+.xfControl.xfReadOnly .widgetContainer .defaultAlert {
+	display: none;
+}
+.xfControl.xfRequiredEmpty .labelContainer .invalidInput {
+	display: inline;
+}
+.xfControl .labelContainer .xfLabel {
+	width: auto;
+	display: inline;
+}
+.xfControl .xfLabel {
+	background-color: transparent;
+	color: #000000;
+	text-align: right;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 10pt;
+	width: 200px;
+	
+	vertical-align: top;
+}
+.xfTextarea .xfLabel, 
+.xfSelect1.aFull .xfLabel, 
+.xfSelect.aFull .xfLabel {
+	vertical-align: top !important;
+}
+.xfSelect.aFull fieldset,
+.xfSelect1.aFull fieldset {
+	margin: auto;
+	padding: 0px;
+	border: none;
+	display: inline-block;
+}
+.xfSelect.aFull fieldset legend,
+.xfSelect1.aFull fieldset legend {
+	position: absolute;
+	left: -9000px;
+	top: -9000px;
+}
+.xfTextarea .widgetContainer {
+	display: inline-block;
+}
+.xfTextarea .widgetContainer .hintIcon {
+	vertical-align: top;
+}
+.widgetContainer {
+	padding-left: 0.5em;
+	width: auto;
+	min-width: 200px
+}
+.xfUpload .widgetContainer {
+	width: auto;
+}
+.xfUpload .widgetContainer .uploadContainer {
+	display: inline-block;
+}
+.xfSelect1.aFull .widgetContainer, 
+.xfSelect.aFull .widgetContainer {
+	/*width: auto !important;*/
+	width: 400px !important;
+}
+/* For IE-specific display -> don't apply to checkboxes*/
+.xfInput .widgetContainer .xfValue:not([type="checkbox"]) {
+	height: 16px;
+	background-color: #FFFFFF;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #C8C8C8;
+	cursor: text;
+	
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;	
+	vertical-align: top;
+}
+.xfControl.xfReadOnly .widgetContainer .xfValue, 
+.xfControl.xfReadOnly .xfValue {
+	cursor: default !important;
+}
+/* For IE-specific display -> only apply to checkboxes*/
+.xfInput .widgetContainer .xfValue[type="checkbox"] {
+	border: none;
+	background: none;
+	background-color: #ECF5FA;
+}
+.keep-together .xfControl {
+	display: inline-block;
+	vertical-align: top;
+}
+/* Styling for hint-texts */
+.keep-together .hintContainer {
+	display: inline-block;
+}
+/* Styling of Validation matters */ 
+.xfRequired .xfLabel:after {
+	content: "*";
+	color: #000000;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;
+	vertical-align: top;
+}
+/*Overwrite from betterForm.css*/
+.xfAlert,
+.defaultAlert {
+	background: none;
+	color: #CC0000;
+	outline: none;
+	padding: 0px;
+	margin: 0px;
+	z-index: 1;
+	
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+	max-width: 400px;
+	width: 100%;
+}
+.defaultAlert {
+	display: block;
+}
+.defaultAlert .bfAlertMsg {
+	display: block;
+	margin: 1px;
+	padding: 3px;
+	padding-left: 0px;
+}
+/*Overwrite from betterFORM.css*/
+.xfInvalid .xfLabel {
+	color: #000000 !important;
+}
+.fullExpandableRepeatHeader .xfInvalid .xfLabel:before {
+	content: '';
+	padding-right: 0px;
+}
+.fullExpandableRepeatHeader .xfControl .widgetContainer {
+	width: auto;
+}
+.fullExpandableRepeatHeader .xfControl .xfLabel {
+	display: none;
+}
+.fullExpandableRepeatHeader .xfControl.xfTrigger {
+	float: right;
+	padding: 0px;
+}
+/*Overwrite from betterform.css*/
+.xfRequiredEmpty:after {
+	content: none;
+}
+/*overwrite betterForm.css*/
+.xfRequiredEmpty .xfValue {
+	border: none;
+}
+/* Overwrite Hint-Alert-Span*/
+.xfHint{
+	display: none !important;
+}
+/* inline-block display for all xfControls, except RadioButtonGroups (RBG must be handled in BF-Customization first)*/
+.hintContainer .xfControl {
+	display: inline-block;
+}
+.hintIcon {
+	cursor: help;
+	padding-right: 5px;
+	margin-left: 7px;
+	vertical-align: top;
+}
+.xfGroupLabel .helptextContainer .hintIcon {
+	vertical-align: middle;
+}
+.hintIcon[title] {
+	z-index: -1;
+}
+.helpText-display {
+	color: black;
+	display: block;
+	border: 1px solid black;
+	background-color:white;
+	padding: 0.3em;
+	z-index: 2;	
+	max-width: 35%;
+
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+}
+.helpText-noDisplay {
+	display: none;
+}
+/* Styling of Radio-Buttons and Comboboxes */
+.xfSelect1.aFull .widgetContainer .xfValue, 
+.xfSelect.aFull .widgetContainer .xfValue {	
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+}
+.xfSelect1.aMinimal .widgetContainer .xfValue, 
+.xfSelect1.aDefault .widgetContainer .xfValue,
+.xfSelect.aMinimal .widgetContainer .xfValue, 
+.xfSelect.aDefault .widgetContainer .xfValue {	
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	height: auto;
+	
+	background-color: #FFFFFF;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #C8C8C8;
+	
+	vertical-align: top;
+	margin-top: 0.1em;
+	
+	max-width: 80%;
+	width: 100%;
+}
+.xfSelect1.aMinimal .widgetContainer .xfValue .xfItemset .xfSelectorItem:not(:last-child),
+.xfSelect1.aMinimal .widgetContainer .xfValue .xfRadioItemset .xfSelectorItem:not(:last-child){
+	display: block;
+	margin-bottom: 5px;
+}
+.xfSelect1.aMinimal .widgetContainer .xfValue .xfItemset .xfSelectorItem:last-child,
+.xfSelect1.aMinimal .widgetContainer .xfValue .xfRadioItemset .xfSelectorItem:last-child {
+	display: block;
+}
+.xfSelect1.aFull .widgetContainer .xfValue .xfItemset .xfSelectorItem:not(:last-child),
+.xfSelect.aFull .widgetContainer .xfValue .xfItemset .xfSelectorItem:not(:last-child),
+.xfSelect1.aFull .widgetContainer .xfValue .xfRadioItemset .xfSelectorItem:not(:last-child),
+.xfSelect.aFull .widgetContainer .xfValue .xfRadioItemset .xfSelectorItem:not(:last-child) {
+	display: block;
+	margin-bottom: 8px;
+}
+.xfSelect1.aFull .widgetContainer .xfValue .xfItemset .xfSelectorItem:last-child,
+.xfSelect.aFull .widgetContainer .xfValue .xfItemset .xfSelectorItem:last-child,
+.xfSelect1.aFull .widgetContainer .xfValue .xfRadioItemset .xfSelectorItem:last-child,
+.xfSelect.aFull .widgetContainer .xfValue .xfRadioItemset .xfSelectorItem:last-child {
+	display: block;
+}
+.xfTextarea .widgetContainer .xfValue {
+	background-color: #FFFFFF;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #BDBDBD;
+	cursor: text;
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+}
+.dijitInputField .dijitInputInner {
+	text-align: left;
+	text-decoration: none !important;
+	font-family: Verdana !important;
+	font-size: 8pt !important;
+	font-style: normal;
+	font-weight: normal;
+	/*height: 21px;*/
+	
+	background-color: #FFFFFF !important;
+	border-width: 1px;
+	border-style: solid !important;
+	border-color: #C8C8C8 !important;
+	vertical-align: middle;
+}
+/* Overwrite tundra.css */
+.dijitSpinner .dijitSpinnerButtonContainer, 
+.dijitComboBox .dijitArrowButtonContainer {
+	border-width: 0 !important;
+}
+/* Overwrite tundra.css */
+.dijitTextBoxError input.dijitValidationInner, 
+.dijitTextBox input.dijitArrowButtonInner {
+	height: 16px !important;
+}
+.tundra .dijitInputContainer input, 
+.tundra .dijitTextBox{
+	margin: 0;
+}
+.compactRepeatTitle, 
+.fullExpandableRepeatTitle {
+	background-color: #D6E5F8;
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 14pt;
+	
+	vertical-align: middle;
+	
+	display: block;	
+	padding: 0.5em;
+	padding-left: 0.2em;
+	margin-bottom: 0.5em;
+	margin-top: 1.2em;
+}
+.fullExpandableRepeatBody .compactRepeatTitle {
+	margin: 10px;
+}
+.xfRepeatIndex {
+	background-color: transparent !important;
+}
+.xfRepeat.aFull {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+}
+.compactRepeatButtons {
+	margin-top: 5px;
+}
+.compactRepeatButtons .xfControl.xfTrigger, 
+.fullExpandableRepeatButtons .xfControl.xfTrigger {
+	margin-top: 0px;
+}
+.fullExpandableRepeatHeader {
+	margin: 0px;
+	padding: 3px;
+	padding-left: 3px !important;
+	background-color: #E6F3FB;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #DCDCDC;
+}
+.fullExpandableRepeatHeader .xfControl {
+	margin: 0px;
+}
+.fullExpandableRepeatHeader .repeatHeaderLabel {
+	margin-left: 7px !important;
+}
+.fullExpandableRepeatHeader .xfControl:not(.repeatButton) .xfValue, 
+.fullExpandableRepeatHeader .xfControl:not(.repeatButton) .widgetContainer .xfValue {
+	background-color: transparent;
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 9pt;
+}
+.fullExpandableRepeatHeader .xfControl {
+	display: inline-block !important;
+	padding-right: 0.2em;
+	text-align: right;
+}
+.fullExpandableRepeatHeader .xfGroupLabel {
+	margin-left: 10px;
+}
+.fullExpandableRepeatHeader .xfControl .xfLabel:empty {
+	width: 0px;	
+}
+.fullExpandableRepeatHeader .xfControl .widgetContainer {
+	padding: 0px;
+}
+.fullExpandableRepeatHeader .xfRequired:not(.xfReadOnly) .xfLabel:after {
+	content: none;
+}
+.fullExpandableRepeatBody {
+	background-color: #F5FAFC;
+	margin: 0px;
+
+	border-width: 1px;
+	border-top-width: 0px;
+	border-style: solid;
+	border-color: #DCDCDC;
+	overflow: visible;
+}
+.fullExpandableRepeatBody .xfControl .alertContainer .xfAlert, 
+.fullExpandableRepeatBody .keep-together .xfControl .alertContainer .xfAlert {
+	float: right;
+}
+.fullExpandableRepeatBody .xfControl, 
+.fullExpandableRepeatBody .keep-together .xfControl {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.fullExpandableRepeatBodyCollapsed {
+	display: none;
+}
+.repeatButton .widgetContainer .xfValue, 
+.repeatButton .xfValue, 
+.expCollapseButton,
+.removeUpload .xfValue {
+	padding: 0;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+.expCollapseButton {
+	float: left;
+}
+.repeatButton .widgetContainer .xfValue img {
+	vertical-align: middle;
+}
+.xfRepeat.aCompact .xfRepeatItem .repeated .widgetContainer {
+	padding-left: 0px;
+	/*TODO: if global .widgetContainer layout is fixed -> correct this*/
+	width: auto !important;
+}
+.xfRepeat.aCompact .xfRepeatItem .repeated .widgetContainer select {
+	min-width: 12em;
+}
+.repeated .alertContainer .xfAlert {
+	background: none;
+	color: #CC0000;
+	outline: none;
+	padding: 0;
+	z-index: 1;
+	
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+	/*TODO Alerts besser unter das Inputfeld positionieren*/
+	position: static;
+	vertical-align: middle;
+	top: 0px;
+	left: 0px;
+	width: auto;
+}
+.xfInvalid .xfAlert{
+	margin-left: 0px;
+}
+.xfAlert .bfAlertMsg{
+	padding-left: 0px !important;
+}
+.xfRepeat.aCompact {
+	display: table;
+	width: 100%;
+}
+.xfRepeat.aFull .xfRepeatItem {
+	padding: 3px;
+	padding-left: 0px;
+}
+.xfRepeat.aCompact .xfRepeatItem {
+	padding: 3px;
+}
+.xfRepeatItem .repeated {
+	margin: 0px;
+}
+.xfRepeatItem td  {
+	background-color: transparent;	
+	padding-top: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.xfRepeat.aCompact .xfRepeatHeader .colHeader {	
+	background-color: transparent;
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+	
+	background-color: transparent;
+	vertical-align: top;
+	padding: 3px;
+}
+.xfRepeat.aCompact td,
+.xfRepeat.aCompact .xfRepeatHeader .colHeader {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #c3c3c3;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+}
+.xfRepeat.aCompact .xfRepeatHeader .colHeader .xfLabel,
+.xfRepeat.aCompact .xfRepeatHeader .colHeader .xfControl .xfLabel {
+	background-color: transparent;
+	color: #000000;
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+
+	white-space: normal;
+	vertical-align: top;
+	max-width: 80%;
+	word-break: break-all;
+}
+.uploads {
+	padding: 0;
+	margin: 0;
+}
+.uploads li {
+	list-style-type: none;
+}
+.uploads li:not(:last-child) {
+	margin-bottom: 0.2em;
+}
+.uploadedFile .fileNameDisplayContainer,
+.uploadedFile .removeUpload {
+	display: inline;
+}
+.removeUpload .uploadedDocIcon,
+.removeUpload .xfValue {
+	vertical-align: middle;
+}
+.uploadedDocIcon {
+	vertical-align: middle;
+	padding-right: 0.5em;
+}
+.uploadWidget .uploads,
+.uploadWidget .uploads li .xfValue {
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;	
+	vertical-align: middle;
+}
+.xfUpload .widgetContainer div iframe {
+	display: none;
+}
+.xfUpload .widgetContainer div .bfProgressbar .border {
+	border: solid;
+	border-width: 1px;
+	border-color: black;
+}
+/************* Button Section *************/
+.buttons {
+	float: right;
+	margin-top: 1em;
+}
+.buttons > .xfControl {
+	display: inline-block;
+}
+/* This rule applies for buttons in general ".xfTrigger > .xfValue" if only desired for ButtonBox, then write: ".buttons > .xfTrigger > .xfValue" */
+.xfTrigger:not(.aMinimal):not(.repeatButton):not(.removeUpload) .xfValue, 
+.xfTrigger:not(.aMinimal):not(.repeatButton):not(.removeUpload) .widgetContainer .xfValue {
+	color: #000000;
+	background-color: transparent;
+	background-image: -moz-linear-gradient(top,#FFFFFF,#EBEADB);
+	background-image: -webkit-linear-gradient(top,#FFFFFF,#EBEADB);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#FFFFFF), color-stop(100%,#EBEADB));
+	background-image: -o-linear-gradient(top,#FFFFFF,#EBEADB);
+	border-width: 1px;
+	border-style: solid;
+	border-color: #C7C5B2;
+
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	cursor: pointer;
+
+	text-align: center;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;	
+	width: auto;
+	min-width: 12em;
+	padding: 0.2em;
+
+	/* IE-Specific changes for correct display */
+	height: 1.8em;
+	/* original start color: #F5F4EC*/
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FDFDFC', endColorstr='#EDECDE', endColorstr='#EDECDE');
+	overflow: visible;	
+}
+.errorResponse {
+	text-align: center;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 8pt;
+}
+.keep-together .xfGroup .text,
+.keep-together .text {
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 0;
+	width: 10%;
+}
+.keep-together .xfGroup {
+	display: inline;
+}
+.text {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	width: 95%;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+.dijitDialog .dijitDialogPaneContent iFrame {
+	vertical-align: middle;
+	text-align: center;	
+}
+.dijitDialog .dijitDialogPaneContent .closeDialogButton {
+	text-align: right;
+}
+.xfFullGroup .xfControl .xfValue {
+	left: auto !important;
+}
+.ui-resizable-se {
+	bottom: 18px !important;
+	padding-right: 5px;
+}
+.invisible {
+	display: none !important;
+}
+.ui-messages-error-icon {
+	display: none !important;
+}
+.ui-messages-error-summary {
+	background: none;
+	color: #CC0000;
+
+	text-align: left;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	line-height: 8pt;
+}
+.ui-messages ul {
+	margin-left: 0px;
+}
+.ui-messages-error, .ui-message-error {
+	background-color: transparent;
+	border-style: none;
+	padding: 5px 5px 5px 0px !important;
+	margin: 0px 0px !important;
+}
+.ui-messages-error-summary {
+	margin-left: 2px;
+}
+.xfFullMpuAddressBlock .xfGroupLabel {
+	display: block;
+}
+.xfFullMpuOrganizationBlock .xfGroupLabel {
+	display: block;
+}
+.xfFullMpuPersonBlock .xfGroupLabel {
+	display: block;
+}

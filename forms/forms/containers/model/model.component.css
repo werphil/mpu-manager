@@ -1,0 +1,9 @@
+.model-container {
+	margin: 0 10px;
+}
+.editForm {
+	cursor: pointer;
+}
+.editForm:hover {
+	text-shadow: 0px 0px 2px #3f8bb5;
+}

@@ -1,0 +1,8 @@
+<div class="info-bottom row" *ngIf="show">
+  <div class="col-8">
+    <i class="fas fa-exclamation-triangle"></i><strong> Achtung:</strong> Aktuell besteht keine Verbindung zu Sharepoint - Änderungen können nicht gespeichert werden.
+  </div>
+  <div class="col text-right">
+    <button type="button" class="btn btn-light" (click)="show = false">Verbergen</button>
+  </div>
+</div>

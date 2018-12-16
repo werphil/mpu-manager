@@ -1,0 +1,61 @@
+{
+	"Name":"Testform",
+	"Logo":"",
+	"Envelope":"aha",
+	"Transmission": {
+		"Type":"Lokales Speichern",
+		"Receiver":""
+	},
+	"NextId": {
+		"Page":1,
+		"Element":1
+	},
+	"Pages":[
+	{
+		"Conditions":[],
+		"Hidden":false,
+		"Label":"Person",
+        "Id":1,
+        "Position":1,
+		"Type": "FormPage",
+		"Rows":[
+			{
+			   "Conditions":[],
+			   "Hidden": false,
+			   "Notes":"",
+			   "Label":"Geben Sie hier bitte eine/n der Geschäftsführer/innen an.",
+			   "Type":"RichText",
+			   "Width":100,
+			   "Repeat":"none",
+			   "Position":1,
+			   "Id":2,
+			   "ParentId": 1
+			},
+			{
+			   "Conditions":[],
+			   "Notes":"",
+			   "Label":"Personendaten",
+			   "Type":"Group",
+			   "Width":100,
+			   "Repeat":"none",
+			   "Position":2,
+			   "Id":3,
+			   "ParentId": 1,
+			   "Rows": [
+					{
+						"Notes":"blabla",
+						"Mandatory": true,
+					   "Label":"Vorname",
+					   "Type":"InputText",
+					   "Prefill": "SZR",
+					   "Width":100,
+					   "Repeat":"none",
+					   "Position":1,
+					   "Id":4,
+					   "ParentId": 3
+					}
+			   ]
+			}
+		]
+	}]
+}

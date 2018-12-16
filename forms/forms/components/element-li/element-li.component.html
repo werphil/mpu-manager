@@ -1,0 +1,17 @@
+<!-- Grid Element -->
+<ng-container *ngIf="element.rows">
+  <li [ngbTooltip]="'Gruppen-ID: ' + element.id">
+    <span class="fa-li"><i class="fas {{ cfg[element.typ].icon }}"></i></span>
+    <a [ngClass]="{'active': viewElement === element, 'hasChanges' : elementChanged(element) }" (click)="elementClicked(element)">{{ element.label.substring(0, 15) }}</a>
+    <ul class="fa-ul" *ngIf="element.rows">
+        <spec-element-li *ngFor="let el of element.rows" [element]="el" [viewElement]="viewElement" [diffs]="diffs" (clicked)="elementClicked(el)"></spec-element-li>
+    </ul>
+  </li>
+</ng-container>
+
+<!-- Normales Element -->
+<li *ngIf="!element.rows" [ngbTooltip]="'Element-ID: ' + element.id" placement="left">
+  <span class="fa-li"><i class="fas {{ cfg[element.typ].icon }}"></i></span>
+  <a [ngClass]="{'active': viewElement === element, 'hasChanges' : elementChanged(element) }" (click)="elementClicked(element)">{{ element.label.substring(0, 13) }}</a>
+</li>
+

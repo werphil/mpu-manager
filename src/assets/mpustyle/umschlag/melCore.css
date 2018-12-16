@@ -1,0 +1,648 @@
+h1, h2 {
+	margin: 0;
+	padding: 0;
+}
+a:focus {
+	border: dashed 1px black;
+}
+#navigation .treeNavigation {
+    list-style-type: none;
+    margin-top: 0;
+    padding-left: 0;
+}
+#navigation .treeNavigation li {
+    margin-bottom: 0em;
+}
+#navigation .treeNavigation a {
+	background-color: transparent;
+	font-family: Verdana;
+    font-size: 8pt;
+    line-height: 8pt;
+    font-style: normal;
+    text-decoration: none;
+}
+#navigation .treeNavigation .topmenu {
+	padding-left: 0.3em;
+}
+#navigation .treeNavigation .topmenu a {
+	font-weight: bold;
+	color: #ffffff;
+}
+#navigation .treeNavigation .topmenu .placeholder {
+	display: none;
+}
+#navigation .treeNavigation .submenu .placeholder {
+	width: 5px;
+	display: table-cell;
+	background-color: #ffffff;
+}
+#navigation .treeNavigation .submenu .menuLabel {
+	display: table-cell;
+	padding-left: 0.3em;
+}
+#navigation .treeNavigation .submenu {
+    border-top: 1px solid;
+    display: table;
+    width: 100%;
+}
+#navigation .treeNavigation .submenu:last-child {
+	border-bottom: 1px solid;
+}
+#navigation .treeNavigation .submenu:not(.activePageLink) a {
+    color: white;
+    font-weight: normal;    
+    text-align: left;    
+}
+#navigation .treeNavigation .submenu.activePageLink a, 
+#navigation .treeNavigation .submenu a:hover {
+    color: white;
+    font-weight: bold;
+    text-align: left;
+}
+#navigation .treeNavigation .submenu.activePageLink .placeholder,
+#navigation .treeNavigation .submenu:hover .placeholder {
+	background-color: white !important;
+}
+#navigationContainer {
+    float: left;
+    width: 13%;
+    
+    min-height: 500px;
+}
+#melHeader .portalLogo {
+	width: auto;
+	max-height: 80px;
+}
+#melActionContainer {
+    border-bottom: 1px solid lightgray;
+    text-align: right;
+    width: 100%;
+}
+#melActionContainer > a {
+    color: white;
+    font-family: Verdana;
+    font-size: 9pt;
+    font-style: normal;
+    line-height: 9pt;
+    text-decoration: none;
+}
+#contentContainer {
+    float: left;
+    width: 87%;
+    
+    min-height: 500px;
+}
+#overlayBackground {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+#overlay {
+    background: none repeat scroll 0 0 white;
+    padding: 1.7em 2em 2em 1em;
+    position: fixed;
+    min-width: 800px;
+}
+.noListStyle {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.contentText {
+	font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 8pt;
+    text-decoration: none;
+}
+.closeCoverButton {
+    color: white;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 8pt;
+    text-decoration: none;
+}
+.closeCoverButton:visited {
+    color: white;
+}
+.closeCoverButton:hover {
+    text-decoration: underline;
+}
+.closeCoverImage {
+    padding-left: 0.7em;
+    vertical-align: middle;
+}
+.outputMessage {
+    background: none repeat scroll 0 0 #ffffff;
+    border: 3px solid #00c400;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
+}
+.outputMessage .message {
+    color: black;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 8pt;
+    padding-left: 1.5em;
+    text-align: left;
+    text-decoration: none;
+}
+#melContent {
+    padding-bottom: 2em;
+    padding-left: 1em;
+}
+#melContent > .forContent {
+    border: 1px solid #0467B3;
+    padding: 0.5em;
+}
+#melContent #coverButtons .coverButton {
+    background: none repeat scroll 0 0;
+    margin-right: 0.3em;
+    padding: 0.1em 3em 0;
+    margin-bottom: 0;
+    line-height: 14pt;
+}
+#melContent #coverButtons .coverButton a {
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 8pt;
+    text-decoration: none;
+}
+#melContent #coverButtons .activeCoverButton {
+    background: none repeat scroll 0 0;
+}
+#melContent #coverButtons .activeCoverButton a {
+    color: white;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 8pt;
+}
+.errorResponse {
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 8pt;
+    text-decoration: none;
+}
+.headerWrapper {
+	width: 100%;
+	font-size: 0;
+	margin-bottom: 15px;
+}
+.contentHeaderButtonBox {
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+}
+.contentHeader,
+.contentHeader h1 {
+    background-color: transparent;
+    color: #000000;
+    font-family: Verdana;
+    font-size: 14pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 14pt;    
+    text-align: left;
+    text-decoration: none;
+
+    display: inline-block;
+    width: 50%;
+}
+.melListPetitionsFormEntry {
+    margin-top: 0.5em;
+    padding: 0.4em 0.4em 0.4em 0.5em;
+    margin-bottom: 1.2em;
+    width: 90%;
+}
+.melListPetitionsFormEntry .ivpName {
+    background-color: transparent;
+    color: #000000;
+    display: block;
+    font-family: Verdana;
+    font-size: 9pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 9pt;
+    margin-bottom: 0.2em;
+    text-align: left;
+    text-decoration: none;
+}
+.melListPetitionsFormEntry a {
+    background-color: transparent;
+    color: #5748DB;
+    font-family: Verdana;
+    font-size: 9pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 9pt;
+    text-align: left;
+    text-decoration: none;
+}
+.melDataTable {
+    padding: 0.1em;
+}
+.melDataTable > table .melTableRow:nth-child(4n+1),
+.melDataTable > table .melTableRow:nth-child(4n-2) {
+	background-color: #ffffff;
+}
+.melDataTable > table, 
+#melContent #cover .savedPetitonsTable table {
+    background-color: transparent;
+    color: #000000;
+    display: block;
+    font-family: Verdana;
+    font-size: 9pt;
+    font-style: normal;
+    line-height: 9pt;
+    overflow: auto;
+    padding-bottom: 0.5em;
+    text-align: left;
+    text-decoration: none;
+}
+.melDataTable thead, 
+#melContent #cover .savedPetitonsTable thead {
+    background-color: transparent;
+}
+.melDataTable th, 
+#melContent #cover .savedPetitonsTable th {
+    border-bottom: 1px solid #c0c0c0;
+    border-left: 1px solid #c0c0c0;
+    border-top: 1px solid #c0c0c0;
+    padding: 0.5em 2.5em 0.5em 0.5em;
+}
+.melDataTable th:last-child, 
+#melContent #cover .savedPetitonsTable th:last-child {
+    border-right: 1px solid #c0c0c0;
+}
+.melDataTable > table .centeredColumn, 
+#melContent #cover .savedPetitonsTable .centeredColumn {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: center;
+}
+.melDataTable th a, 
+#melContent #cover .savedPetitonsTable th a {
+    background-color: transparent;
+    color: #000000;
+    font-family: Verdana;
+    font-size: 9pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 9pt;
+    text-align: left;
+    text-decoration: none;
+}
+.melDataTable td, 
+#melContent #cover .savedPetitonsTable td {
+    border-bottom: 1px solid #c0c0c0;
+    border-left: 1px solid #c0c0c0;
+    height: 2.5em;
+    padding: 0.1em 0.5em;
+    text-align: left;
+}
+.melDataTable td:last-child, 
+#melContent #cover .savedPetitonsTable td:last-child {
+    border-right: 1px solid #c0c0c0;
+}
+.melDataTable table .centeredColumn, 
+#melContent #cover .savedPetitonsTable table .centeredColumn {
+    text-align: center;
+}
+.melDataTable .emptyTable td, 
+#melContent #cover .savedPetitonsTable .emptyTable td {
+    border: 0 none !important;
+}
+.melDataTable td a, 
+#melContent #cover .savedPetitonsTable td a {
+    background-color: #eeeeee;
+    border-color: #cccccc #333333 #333333 #cccccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    font-size: 8pt;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+}
+/*.melDataTable > table > tbody > tr > td > table > tbody > tr > td > a, 
+#melContent > #cover > form > .savedPetitonsTable > table > tbody > tr > td > table > tbody > tr > td > a {
+    background-color: #eeeeee;
+    border-color: #cccccc #333333 #333333 #cccccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    font-size: 8pt;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+}*/
+.melDataTable table .detailTableEntry .value, 
+#melContent #cover .savedPetitonsTable table .detailTableEntry .value, 
+#melContent .savedPetitonsTable .detailTableEntry .detailTableButtons input,
+.melButton {
+    background-color: transparent;
+    background-image: -moz-linear-gradient(center top , #ffffff, #ebeadb);
+    border-color: #c7c5b2;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    cursor: pointer;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    height: 1.8em;
+    line-height: 8pt;
+    margin-right: 1em;
+    min-width: 10em;
+    overflow: visible;
+    padding: 0.2em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    width: auto;
+}
+.melButtonPaging {
+    background-color: transparent;
+    background-image: -moz-linear-gradient(center top , #ffffff, #ebeadb);
+    border-color: #c7c5b2;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    height: 2.1em;
+    line-height: 8pt;
+    min-width: 2em;
+    overflow: visible;
+    padding: 0.2em 0.8em;
+    text-align: center;
+    text-decoration: none;
+}
+.melButtonPagingActive {
+    color: #000000;
+    cursor: pointer;
+}
+.melButtonPagingDisabled {
+    cursor: auto;
+}
+.melActionButton {
+	background-color: transparent;
+	background-image: -moz-linear-gradient(center top , #ffffff, #ebeadb);
+	border-color: #c7c5b2;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+	color: #000000;
+	cursor: pointer;
+	font-family: Verdana !important;
+	font-size: 8pt !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	height: 1.8em;
+	line-height: 8pt;
+	margin-right: 1em;
+	min-width: 10em;
+	overflow: visible;
+	padding: 0.2em 0.8em;
+	text-align: center;
+	text-decoration: none;
+	width: auto;
+}
+.headerButton {
+	padding: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	height: inherit;
+}
+.detailTableEntry {
+    overflow: hidden;
+    padding: 0.7em 1em 1em;
+}
+.detailTableEntry > table {
+    margin-bottom: 0.5em;
+}
+.detailTableEntry > div {
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+.petitionBorder {
+    border: 1px solid;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    line-height: 8pt;
+    overflow: auto;
+    padding: 1em;
+    text-align: left;
+    text-decoration: none;
+}
+#petitionCover .section1 {
+    display: inline;
+}
+#petitionCover .section1 .petitionProperties {
+    display: inline-block;
+    line-height: 10pt;
+    padding-top: 2px;
+    width: 49%;
+}
+#petitionCover .section1 .petitionProperties .outputContainer {
+    padding-bottom: 0.8em;
+    padding-top: 0.8em;
+}
+#petitionCover .section1 .petitionProperties .outputContainer .outputLabel {
+    display: inline-block;
+    padding-right: 10px;
+    text-align: right;
+    vertical-align: top;
+    width: 35%;
+}
+#petitionCover .section1 .petitionProperties .outputContainer .outputValue {
+    display: inline-block;
+    text-align: left;
+    width: 60%;
+}
+#petitionCover .section2,
+#petitionCover .section1_2 {
+    line-height: 12pt;
+}
+#petitionCover .section2 .titleSection2,
+#petitionCover .section1_2 .titleSection2,  
+#petitionCover .petitionProperties .titleSection2 {
+    display: block;
+    font-family: Verdana;
+    font-size: 10pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 10pt;
+    padding-bottom: 1.3em;
+    text-decoration: none;
+}
+#petitionCover .section1_2 .titleSection2 {
+	padding-bottom: 0.4em !important;
+}
+#petitionCover .section1_2 .listItem:NOT(:LAST-CHILD) {
+	padding-bottom: 0.2em;
+}
+#petitionCover .section1_2 .listItemLabel {
+	margin-left: 1em;
+}
+#petitionCover .section2 .listAttachments {
+    padding-left: 1.5em;
+}
+#petitionCover .section3 .titleSection3 {
+    display: block;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 8pt;
+    padding-bottom: 1em;
+    text-decoration: none;
+}
+#petitionCover .buttonSection .button {
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 8pt;
+    margin-right: 0.8em;
+    text-align: center;
+    text-decoration: none;
+}
+#petitionCover .section1, 
+#petitionCover .section2, 
+#petitionCover .section3, 
+#petitionCover .buttonSection {
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+}
+#petitionCover .section1_2 {
+    padding-top: 1em;
+}
+#petitionCover .petitionProperties .propertiesFields {
+    padding-bottom: 2em;
+    padding-top: 1em;
+}
+.inputContainer .inputValue {
+    padding-left: 1em;
+}
+#petitionCover .buttonSection .button {
+    background-color: transparent;
+    background-image: -moz-linear-gradient(center top , #ffffff, #ebeadb);
+    border-color: #c7c5b2;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    cursor: pointer;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: normal;
+    height: 1.8em;
+    line-height: 8pt;
+    overflow: visible;
+    padding: 0.2em 0.8em;
+    text-align: center;
+    text-decoration: none;
+}
+#coverHeader,
+#coverHeader h1 {
+    display: block;
+    font-family: Verdana;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 11pt;
+    padding-left: 0.5em;
+    text-decoration: none;
+}
+#melContent #coverHeader .ivpCovertitleWrapper {
+	width: 100%;
+	font-size: 0;
+}
+#melContent #coverHeader .ivpTitle {
+	display: inline-block;
+	width: 60%;
+	vertical-align: top;
+}
+#melContent #coverHeader .ivpLogo {
+	display: inline-block;
+	font-size: 11pt;
+	width: 35%;
+	vertical-align: top;
+	min-height: 70px;
+}
+#melContent #coverHeader .closeCoverButton {
+	display: inline-block;
+	width: 5%;
+	vertical-align: top;
+	text-align: right;
+}
+#melContent #coverHeader .ivpLogoImage {
+	max-height: 70px;
+	height: 70px;
+	width: auto;
+}
+#melContent #coverHeader #coverButtonSection,
+#melContent #coverHeader #ivpLogoSection {
+	vertical-align: bottom;
+}
+#melContent #coverHeader #ivpLogoSection {
+	text-align: right;
+}
+#melContent #coverHeader #ivpLogoSection div {
+	height: 70px;
+	width: auto;
+	padding-bottom: 10px;
+}
+#melContent #coverHeader #closeCoverSection {
+	vertical-align: top;
+}
+a.external:visited {
+    color: blue;
+}
+.external > img {
+    margin-left: 3px;
+}
+.filterPanel {
+    padding-left: 0.2em;
+    padding-top: 0;
+}
+.filterPanel > select {
+    margin-left: 1em;
+}
+.border_highlighted_bottom {
+    border-bottom: 2pt solid #949494 !important;
+    border-left: 2pt solid #949494 !important;
+    border-right: 2pt solid #949494 !important;
+}
+.border_highlighted_top {
+    border-top: 2pt solid #949494 !important;
+}
+.border_highlighted_top:first-child {
+    border-left: 2pt solid #949494 !important;
+}
+.border_highlighted_top:last-child {
+    border-right: 2pt solid #949494 !important;
+}
+.prefillDeclarationList {
+	list-style: none;
+	margin: 0;
+}

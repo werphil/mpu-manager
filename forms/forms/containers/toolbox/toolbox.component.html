@@ -1,0 +1,24 @@
+
+<div class="toolbox">
+	<ul class="list-group">
+		<li *ngFor="let tool of tools" class="list-group-item" draggable [dragData]="tool" [dragScope]="'tool'">
+			<span *ngIf="collapsed"><i class="fas {{tool.icon}}"></i></span>
+			<span *ngIf="!collapsed"><i class="fas fa-fw {{tool.icon}}"></i> {{ tool.name }}</span>
+		</li>
+	</ul>
+
+	<div class="ablage" >
+		
+		<div class="ablage-header">
+			<span *ngIf="dropped !== null" (click)="dropped = null" [ngbTooltip]="'Element löschen'" class="text-danger removeIcon float-right"><i class="fas fa-trash"></i></span>
+			Ablage
+		</div>
+		<div class="ablage-area" *ngIf="dropped === null" droppable [dropScope]="'element'" [dragOverClass]="'drag-over'" (onDrop)="onDrop($event)">
+			<i class="fas fa-cloud-upload-alt"></i>
+		</div>
+		<div class="ablage-dropped" *ngIf="dropped !== null" draggable [dragData]="{ control: dropped, ablage: this }" [dragScope]="'element'">
+			<i class="fa {{ cfg[dropped.typ].icon }}"></i> {{ (dropped.label) ? dropped.label : cfg[dropped.typ].name }}
+		</div>
+	</div>
+</div>
+

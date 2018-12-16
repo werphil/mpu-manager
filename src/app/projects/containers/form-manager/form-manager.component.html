@@ -1,0 +1,22 @@
+<div class="d-flex" *ngIf="!(form$ | async)">
+    <p-progressSpinner></p-progressSpinner>
+    <p class="p-5">Formular wird geladen...</p>
+</div>
+
+
+<ng-container *ngIf="!!(form$ | async)">
+    <mpu-topnav [showMenu]="false" [showHome]="true" [formName]="(form$ | async).ProjectName" loginName="Max Mustermann"></mpu-topnav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Formular: {{ (form$ | async).Name }}</h1>
+            </div>
+            <div class="col text-right">
+                <a [routerLink]="'/forms/' + (form$ | async).Id + '/' + (form$ | async).LatestVersion.MajorVersion + '/' + (form$ | async).LatestVersion.MinorVersion" 
+                    class="btn btn-primary btn-mat">Aktuelle Version öffnen</a>
+            </div>
+        </div>
+        
+        <mpu-form-item [form]="(form$ | async)"></mpu-form-item>
+    </div>
+</ng-container>

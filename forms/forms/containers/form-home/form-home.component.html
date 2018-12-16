@@ -1,0 +1,53 @@
+
+<!-- Neues Projekt -->
+<ng-template #dlgVersion let-c="close" let-d="dismiss">
+		<div class="modal-header">
+			<h4 class="modal-title">Version speichern</h4>
+		</div>
+		<div class="modal-body">
+			<p>Anmerkungen zu dieser Version</p>
+			<input class="form-control" [(ngModel)]="versionNotes" />
+		</div>
+		<div class="modal-footer">
+				<button type="button" class="btn btn-outline-dark" (click)="c('cancel')">Abbrechen</button>
+			<button type="button" class="btn btn-success" (click)="c('ok'); saveForm(true)">Als neue Version speichern</button>
+		</div>
+	</ng-template>
+
+<div class="" *ngIf="(form === null || form === undefined) && error === ''"><i class="fas fa-circle-notch fa-spin"></i> Formular wird geladen</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" *ngIf="form">
+	<a class="navbar-brand" routerLink="/home"><i class="fas fa-home"></i></a>
+  
+	<div class="navbar-nav mr-auto">
+		<a class="nav-item navbar-brand" routerLink="info" routerLinkActive="active" (click)="currentMode='info'">{{ projektinfo.projektname }} | {{ projektinfo.formularname }}</a>
+		<a class="nav-item nav-link" routerLink="edit" routerLinkActive="active" (click)="currentMode='edit'">Modellieren</a>
+		<a class="nav-item nav-link" routerLink="spezi" routerLinkActive="active" (click)="currentMode='spezi'">Spezifikation</a>
+		<a class="nav-item nav-link" routerLink="vergleich" routerLinkActive="active" (click)="currentMode='vergleich'">Vergleichen</a>
+		<a class="nav-item nav-link" routerLink="preview" routerLinkActive="active" (click)="currentMode='preview'">Vorschau</a>
+	</div>
+	
+	<div class="navbar-nav">
+	  <div ngbDropdown placement="bottom-right" class="d-inline-block" *ngIf="projektinfo.versionen !== null">
+		<button class="btn btn-outline-light" ngbDropdownToggle>Version {{ form.metadata.version }} vom {{ projektinfo.versionen[form.metadata.version - 1].lastEdit | date: 'dd.MM.y HH:mm' }} Uhr</button>
+		<div ngbDropdownMenu>
+		  <a *ngFor="let v of projektinfo.versionen" routerLink="../{{ v.nr }}/{{ currentMode }}" [ngClass]="{ 'dropdown-item': true, 'current-version': v.nr === projektinfo.lastVersion }">Version {{ v.nr }} <span *ngIf="v.desc && v.desc.length > 0">({{ v.desc }})</span> vom {{ v.lastEdit | date: 'dd.MM.y HH:mm' }} Uhr</a>
+		</div>
+	  </div> 
+
+		<div class="btn-group abstand-links"  *ngIf="currentMode === 'edit'">
+			<button class="btn btn-primary" type="button" (click)="saveForm()"><i class="fas fa-{{ versionConfig[versionMode].icon }}"></i> Commit</button>
+			<div class="btn-group" ngbDropdown placement="bottom-right">
+				<button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+				<div class="dropdown-menu" ngbDropdownMenu>
+					<button class="dropdown-item" *ngFor="let vcfg of versionConfig" (click)="versionMode = vcfg.mode"><i class="fas fa-{{ vcfg.icon }}"></i> {{ vcfg.name }}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+<div class="spacer"></div>
+<ngb-alert *ngIf="showSuccess" type="success" (close)="showSuccess = false">Formular wurde gespeichert.</ngb-alert>
+<div class="alert alert-danger" *ngIf="spError">Keine Verbindung mit Sharepoint möglich.</div>
+<div class="alert alert-danger" *ngIf="form === null">Das Formular konnte nicht geladen werden.</div>
+	
+	<router-outlet *ngIf="form !== null"></router-outlet>

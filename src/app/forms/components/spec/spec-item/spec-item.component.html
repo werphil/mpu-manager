@@ -1,0 +1,38 @@
+<div *ngIf="!!value && (!value.hasOwnProperty('length') || !!value.length)" class="row spec-item">
+  <div class="col-3">
+    <span class="cat-icon">
+      <i [class]="config.Icon"></i>
+    </span>
+    <span class="cat-label">{{ config.Name }}</span>
+  </div>
+  <div class="col" [ngSwitch]="type">
+    <span *ngSwitchCase="'Mandatory'">{{ value | YesNo }}</span>
+
+    <span *ngSwitchCase="'Hidden'">
+      <span *ngIf="Hidden">1 != 1 (Element verstecken)</span>
+    </span>
+
+    <span *ngSwitchCase="'Parent'">
+        <a href="javascript:void(0);" (click)="selectElement.emit(value.Id)">{{ value.Label }}</a>
+    </span>
+
+    <span *ngSwitchCase="'Rows'">
+      <span *ngFor="let row of value; index as i">
+          <i [class]="row.Icon"></i> 
+          <a href="javascript:void(0);" (click)="selectElement.emit(row.Id)">
+            {{ (row.Label.length > 20) ? (row.Label.substr(0, 20) + '...') : row.Label }}
+          </a>
+          <span *ngIf="(i < (value.length - 1))"> | </span>
+      </span>
+        
+    </span>
+
+    <span *ngSwitchCase="'Type'">{{ controls[value].Name }}</span>
+
+    <span *ngSwitchDefault>{{ value }}</span>
+  </div>
+  <div class="col-1" *ngIf="config.CanCopy">
+    <button type="button" class="btn btn-outline-dark" [title]="config.Name + ' kopieren'" (click)="c2c()"><i class="fas fa-copy"></i></button>
+  </div>
+  <!-- Darstellung von komplexen Typen (eigene Components) -->
+</div>

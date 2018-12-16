@@ -1,0 +1,44 @@
+<nav class="top-navigation">
+  <div class="row">
+    <div class="col-1" *ngIf="showHome">
+        <a class="nav-item logo" routerLink="/">
+          <i class="fas fa-home"></i>
+        </a>
+    </div>
+    <div class="col" *ngIf="!showMenu">
+      <span class="mpu-title">MPU FormularManager
+        <span *ngIf="formName.length > 2"> | {{ formName }}</span>
+      </span>
+    </div>
+    <div class="col" *ngIf="showMenu">
+        <a class="nav-item logo" routerLink="/">
+          {{ formName }}
+        </a>
+        <ul class="nav-item navigation">
+            <li>
+              <a routerLink="./home" routerLinkActive="active">Start</a>
+            </li>
+            <li>
+              <a routerLink="./spec" routerLinkActive="active">Spezifikation</a>
+            </li>
+            <li>
+              <a routerLink="./compare" routerLinkActive="active">Vergleichen</a>
+            </li>
+            <li>
+              <a routerLink="./model" routerLinkActive="active">Bearbeiten</a>
+            </li>
+            <li>
+              <a routerLink="./preview" routerLinkActive="active">Live-Vorschau</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col">
+      <div class="login">
+        <span>{{ loginName }}</span>
+        <div class="icon">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+.element-menu {
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+ul.treeview li a {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+}
+ul.treeview li a:hover {
+    background: #F5F5F5;
+}
+ul.treeview li a.active {
+    font-weight: bold;
+}

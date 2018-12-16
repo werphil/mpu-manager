@@ -1,0 +1,26 @@
+@import 'index';
+
+.center {
+    @include centerBoth();
+}
+
+.error {
+    width: 100%;
+    height: calc(100vh - 100px);
+    background: #0D0A1F;
+    color: white;
+    position: relative;
+  
+    h1 {
+      font-size: 54px;
+      color: #7FE0BE;
+      border-bottom: 1px solid #7FE0BE;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  
+    p {
+      font-size: 26px;
+    }
+    
+  }

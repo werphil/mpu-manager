@@ -1,0 +1,116 @@
+<div class="modal-header">
+    <h4 class="modal-title">Anzeigebedingungen verwalten</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('ok')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-danger" *ngIf="_elements === null || _elements.length === 0">Die Formularfelder konnten nicht geladen werden.</div>
+    <div *ngIf="active.hide"><button type="button" class="btn btn-outline-primary float-right" (click)="active.hide = false">Wieder anzeigen</button><strong>{{ active.label }} wird nicht angezeigt.</strong></div>
+    <div *ngIf="(!active.conditions || active.conditions.length === 0) && !active.hide">
+      <button type="button" class="btn btn-outline-primary float-right" (click)="active.hide = true">Element nicht anzeigen</button>
+      <strong>{{ active.label }} wird immer angezeigt.</strong>
+    </div>
+    
+    <div *ngIf="active.conditions && active.conditions.length > 0 && !active.hide">
+      <p>Damit {{ active.label || active.name || active.typ }} angezeigt wird muss gelten:</p>
+      <div class="row" *ngFor="let condi of active.conditions; index as i">
+          <div class="col-2">
+            <span *ngIf="i > 0">
+              <mat-select [(value)]="condi.mode">
+                  <mat-option [value]="'und'">und</mat-option>
+                  <mat-option [value]="'oder'">oder</mat-option>
+              </mat-select>
+            </span>
+          </div>
+          <div class="col-3">{{ getElementById(condi.id).label }}</div>
+          <div class="col-1">{{ condi.operator }}</div>
+          <div class="col-3">{{ (condi.value.substring(0,3) === 'id=') ? getElementById(condi.value.substring(3)).label : condi.value }}</div>
+          <div class="col">
+            <button *ngIf="i > 0" type="button" class="btn btn-outline-dark" (click)="move(true, i)"><i class="fas fa-chevron-up"></i></button>
+            <button *ngIf="i < (active.conditions.length - 1)" type="button" class="btn btn-outline-dark" (click)="move(false, i)"><i class="fas fa-chevron-down"></i></button>
+            <button type="button" class="btn btn-outline-dark" (click)="delete(i)"><i class="fas fa-times"></i></button>
+          </div>
+      </div>
+    </div>
+
+    <hr />
+   
+    <form [formGroup]="conditionForm" (ngSubmit)="addCondition()" *ngIf="!active.hide">
+      <span class="float-right" *ngIf="conditionForm.get('bindGroup').value && conditionForm.get('bindGroup').value.e && !conditionForm.get('bindGroup').value.e.values">
+          <mat-slide-toggle formControlName="toggler">{{ (conditionForm.get('toggler').value) ? 'Element wählen'  : 'Wert eingeben' }}</mat-slide-toggle>
+      </span>
+      <p *ngIf="!active.conditions || active.conditions.length === 0">Neue Anzeigebedingung:</p>
+      <div *ngIf="active.conditions && active.conditions.length > 0">
+        <div class="andor">
+        
+          <mat-select formControlName="mode">
+              <mat-option [value]="'und'">und</mat-option>
+              <mat-option [value]="'oder'">oder</mat-option>
+          </mat-select>
+        </div>
+      </div>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Dieses Element" formControlName="bindGroup" [matAutocomplete]="bindAuto" required/>
+        <mat-autocomplete #bindAuto="matAutocomplete" [displayWith]="displayLabel">
+          <mat-optgroup *ngFor="let page of elements.bind" [label]="page.label">
+            <mat-option *ngFor="let el of page.elements" [value]="{p: page, e: el}">
+              {{el.label}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+        <mat-hint>{{ conditionForm.get('bindGroup').value.p?.label }}</mat-hint>
+      </mat-form-field>
+      
+      <!-- Wenn das gewählte Element eine Werteliste hat -->
+      <ng-container *ngIf="conditionForm.get('bindGroup').value && conditionForm.get('bindGroup').value.e && conditionForm.get('bindGroup').value.e.values">
+        <span>muss den Wert </span>
+
+        <mat-form-field>
+          <mat-select placeholder="aus dieser Liste" formControlName="value">
+              <mat-option *ngFor="let val of conditionForm.get('bindGroup').value.e.values" [value]="val">
+                {{ val }}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <span>haben</span>
+      </ng-container>
+      
+      <!-- Wenn das gewählte Element keine Werteliste hat -->
+      <ng-container *ngIf="conditionForm.get('bindGroup').value && conditionForm.get('bindGroup').value.e && !conditionForm.get('bindGroup').value.e.values">
+
+      <mat-form-field>
+        <mat-select placeholder="mit dieser Bedingung" formControlName="operator" required>
+            <mat-option *ngFor="let op of operators" [value]="op.operator">
+              {{ op.name }}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field *ngIf="!conditionForm.get('toggler').value">
+        <input matInput placeholder="Wert eingeben..." formControlName="value">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="conditionForm.get('toggler').value">
+        <input type="text" matInput placeholder="vom Element" formControlName="withGroup" [matAutocomplete]="withAuto"/>
+        <mat-autocomplete #withAuto="matAutocomplete" [displayWith]="displayLabel">
+          <mat-optgroup *ngFor="let page of elements.bind" [label]="page.label">
+            <mat-option *ngFor="let el of page.elements" [value]="{p: page, e: el}">
+              {{el.label}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+        <mat-hint>{{ conditionForm.get('withGroup').value.p?.label }}</mat-hint>
+      </mat-form-field>
+
+    </ng-container>
+      
+      <button type="submit" [disabled]="isFormDisabled()" class="btn btn-success add-button"><i class="fa fa-plus-square"></i></button>
+
+      </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="activeModal.close('ok')">Weiter</button>
+  </div>

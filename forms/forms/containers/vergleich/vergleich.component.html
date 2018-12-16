@@ -1,0 +1,65 @@
+<div class="alert alert-danger" *ngIf="form === null">Das Formular konnte nicht geladen werden.</div>
+<div class="alert alert-danger" *ngIf="compare === null">Das Vergleichsformular konnte nicht geladen werden.</div>
+<div class="container-fluid" *ngIf="form !== null">
+  <div class="row comp-header">
+    <div class="col-5">
+      <p>Was gibt es neues in</p>
+      <h2>Version {{ form.metadata.version }} <small>vom {{ form.metadata.time | date: 'dd.MM.y hh:mm' }} Uhr</small></h2>
+    </div>
+    <div class="col-2 text-center">
+      <button type="button" class="btn btn-outline-dark" (click)="switchSides()"><i class="fas fa-exchange-alt"></i></button>
+      <div class="btn-group btn-group-toggle viewchange" ngbRadioGroup [(ngModel)]="view.mode">
+        <label ngbButtonLabel class="btn-outline-dark">
+          <input ngbButton type="radio" [value]="'table'"><i class="fa faw fa-table"></i>
+        </label>
+        <label ngbButtonLabel class="btn-outline-dark">
+          <input ngbButton type="radio" [value]="'tree'"><i class="fa faw fa-sitemap"></i>
+        </label>
+      </div>
+    </div>
+    <div class="col-5 text-right">
+        <p>im Vergleich zu</p>
+      <div ngbDropdown class="d-block ddmenu" placement="bottom-right" *ngIf="projektinfo.versionen !== null">
+        <h2 ngbDropdownToggle>Version {{ compare.metadata.version }} <small>vom {{ compare.metadata.time | date: 'dd.MM.y hh:mm' }} Uhr</small></h2>
+        <div ngbDropdownMenu>
+          <button class="dropdown-item" *ngFor="let v of projektinfo.versionen" (click)="setCompare(v.nr)">Version {{ v.nr }} ({{ v.desc }}) vom {{ v.timestamp | date: 'dd.MM.y hh:mm' }} Uhr</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-info" *ngIf="differences === null"><span class="float-right">
+    <i class="fas fa-arrow-up"></i><i class="fas fa-arrow-up"></i><i class="fas fa-arrow-up"></i><i class="fas fa-arrow-up"></i><i class="fas fa-arrow-up"></i>
+  </span>Wähle eine Version zum Vergleichen</div>
+  <div class="alert alert-info" *ngIf="differences && differences.length === 0">Die beiden Versionen sind ident.</div>
+<ng-container *ngIf="form !== null && compare !== null && differences && differences.length > 0">
+
+  <table class="table table-striped" *ngIf="view.mode === 'table'">
+    <thead>
+      <tr>
+        <th scope="col">Element</th>
+        <th scope="col">Unterschied</th>
+        <th scope="col">Änderung</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let diff of differences">
+        <td *ngIf="diff.category === 0">Formular</td>
+        <td *ngIf="diff.category === 1"><span class="diff-tooltip" [ngbTooltip]="diff.tooltip" placement="right">Seite {{ diff.id }}</span></td>
+        <td *ngIf="diff.category === 2"><span class="diff-tooltip" [ngbTooltip]="diff.tooltip" placement="right">ID {{ diff.id }}</span></td>
+        <td>{{ diff.typ }} wurde {{ diff.mode }}</td>
+        <td><s class="text-" *ngIf="diff.from">{{ diff.from }} </s>{{ diff.to }}</td>
+        <td>
+          <button *ngIf="diff.action === 'copy'" type="button" class="btn btn-outline-dark" (click)="c2c(diff.id, diff.actionProperty, diff.category)" title="In die Zwischenablage kopieren">
+          <i class="fas fa-copy"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tree-div" *ngIf="view.mode === 'tree'">
+    <app-treeview [form]="form" [diffs]="differences"></app-treeview>
+  </div>
+
+</ng-container>
+</div>

@@ -1,0 +1,12 @@
+
+<th scope="row" *ngIf="stage !== 'L'">Version auf {{ stage }}</th>
+<th scope="row" *ngIf="stage === 'L'">Aktuelle Version</th>
+
+<td>
+  <span *ngIf="!!version">{{ version.MajorVersion }}.{{ version.MinorVersion }}</span>
+  <span *ngIf="!version">N/A</span>
+</td>
+
+<td class="text-right">
+  <a class="btn btn-dark btn-sm" *ngIf="!!version" [routerLink]="'/forms/' + formId + '/' + version.MajorVersion + '/' + version.MinorVersion">Öffnen</a>
+</td>

@@ -1,0 +1,10 @@
+<div class="alert alert-info" *ngIf="!element">Kein Element ausgewählt</div>
+
+<ng-container *ngIf="!!element">
+  <mpu-spec-category *ngFor="let cat of config" 
+                    [config]="cat"
+                    [element]="element"
+                    (selectElement)="selectElement.emit($event)"
+                    (copyText)="copyText.emit($event)"></mpu-spec-category>
+
+</ng-container>

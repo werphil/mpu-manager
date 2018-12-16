@@ -1,0 +1,22 @@
+
+<div class="row">
+  <div class="col">
+      <h1>Projektexplorer</h1>
+  </div>
+  <div class="col">
+      <div class="action-bar">
+          <input type="text" class="form-control" pInputText placeholder="Projekte durchsuchen..." [(ngModel)]="filter" />
+          <button class="btn btn-primary btn-lg" (click)="addProject.emit()"><i class="fas fa-plus"></i> Neu</button>
+      </div>
+  </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="!projects || projects.length === 0">
+	Die Projekte konnten nicht geladen werden.
+</div>
+<div class="explorer" *ngIf="!!projects && projects.length > 0">
+    
+  <div class="list">
+    <mpu-project-item *ngFor="let project of projects | ProjectFilter: filter" [project]="project" (addForm)="addForm.emit($event)"></mpu-project-item>
+  </div>
+</div>

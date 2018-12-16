@@ -1,0 +1,44 @@
+{
+	"NextFormId": 3,
+	"NextProjectId": 2,
+	"Projects":[
+	{
+		"Id": 1,
+		"Name":"eGründung",
+		"Forms":[
+		{
+			"Id":1,
+			"Name":"Verf 24",
+			"DeployedVersions": {
+				"SystemQ": {
+					"MajorVersion": 1,
+					"MinorVersion": 1
+				},
+				"SystemP": null,
+				"SystemE": {
+					"MajorVersion": 1,
+					"MinorVersion": 1
+				}
+			},
+			"MajorVersions":[
+			{
+				"Number":1,
+				"Notes":"",
+				"MinorVersions": [
+					{
+						"Number": 1
+					}
+				]
+			},
+			{
+				"Number":2,
+				"Notes":"",
+				"MinorVersions": [
+					{
+						"Number": 1
+					}
+				]
+			}]
+		}]
+	}]
+}

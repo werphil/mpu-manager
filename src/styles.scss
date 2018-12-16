@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app/scss/index';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+  }
+
+
+
+h1 {
+  color: color(primary);
+  margin-bottom: 20px;
+}
+
+
+/** Buttons */
+
+.btn {
+  border-radius: 0 !important;
+}
+
+.btn-mat {
+  padding: 10px;
+
+  &:hover {
+    box-shadow: 0px 0px 0px 1px #666;
+    text-decoration: none;
+  }
+}
+

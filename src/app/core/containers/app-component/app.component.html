@@ -1,0 +1,21 @@
+
+<div class="wrap" *ngIf="loading$ | async">
+    <div class="loading">
+        <h1>MPU Formularmanager</h1>
+        <div class="bounceball"></div>
+        <div class="text">Laden...</div>
+    </div>
+</div>
+  
+<p-toast></p-toast>
+
+<ng-container *ngIf="loaded$ | async">
+    <router-outlet></router-outlet>
+</ng-container>
+
+<div class="errorpage" *ngIf="!(loaded$ | async) && !(loading$ | async)">
+    <div class="wrap">
+        <h1>:( Oje</h1>
+        <p>Der Formularmanager konnte nicht geladen werden.</p>
+    </div>
+</div>

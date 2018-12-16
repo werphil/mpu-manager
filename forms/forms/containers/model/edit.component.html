@@ -1,0 +1,14 @@
+
+<div class="container-fluid" (mousemove)="doResize($event)" (mouseup)="endResize($event)" (mouseleave)="endResize($event)">
+	<div class="row">
+		<div class="{{ 'col-' + cols.tools }}">
+			<div [ngClass]="{'resizer': true, 'resizer-active': resize.active }" [ngStyle]="{'left': resize.currX + 'px' }" (mousedown)="startResize($event)"></div>
+			<h2 *ngIf="cols.tools > 1">Toolbox</h2>
+			<app-toolbox [collapsed]="cols.tools === 1"></app-toolbox>
+			
+		</div>
+		<div class="col">
+			<app-model></app-model>
+		</div>
+	</div>
+</div> 
